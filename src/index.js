@@ -1,20 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
-import { createBrowserRouter, RouterProvider, } from "react-router-dom";
+import { createBrowserRouter, RouterProvider, Navigate } from "react-router-dom";
 import MyAccount from './Components/MyAccount';
 import OrderForm from './Components/OrderForm';
 import Register from './Components/Register';
 import SignIn from './Components/SignIn';
 import TopDonors from './Components/TopDonors';
-import HomePage from './HomePage';
-
+import HomePage from './Components/HomePage';
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
     children: [
+      {
+        path: "/",
+        element: <Navigate to="/home" replace={true} />
+      },
       {
         path: "/home",
         element: <HomePage></HomePage>

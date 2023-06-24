@@ -1,19 +1,23 @@
 import React, { useContext } from 'react'
+import Footer from './Footer'
 import styled from 'styled-components'
 import { stylesContext } from '../ContextProviders/StylesProvider'
 
-const StyledSignIn = styled.div`
+const StyledHomePage = styled.div`
   width: 100%;
-  min-height: calc(100vh-70px);
+  min-height: 400vh;
   background-color: ${props => {return props.backgroundColor}};
 `
 
-function SignIn() {
+function HomePage() {
   const styles = useContext(stylesContext);
 
   return (
-    <StyledSignIn backgroundColor={styles.secondaryColor}></StyledSignIn>
+    <>
+      <StyledHomePage backgroundColor={styles.secondaryColor}></StyledHomePage>
+      <Footer></Footer>
+    </>
   )
 }
 
-export default SignIn
+export default HomePage
