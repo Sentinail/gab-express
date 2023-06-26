@@ -13,7 +13,7 @@ function MyAccount(props) {
 
   return (
     <StyledRegister backgroundColor={styles.secondaryColor}>
-      <h1> This is Accounts </h1>
+      <h1> This is Accounts Changed from Master </h1>
     </StyledRegister>
   )
 }
