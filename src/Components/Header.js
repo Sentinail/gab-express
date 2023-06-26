@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { stylesContext } from '../ContextProviders/StylesProvider'
-import { useContext } from 'react'
+import React, { useContext } from 'react'
 import { useNavigate } from "react-router-dom";
 
 const StyledHeader = styled.div`
