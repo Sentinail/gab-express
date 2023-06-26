@@ -2,7 +2,7 @@ import React from 'react'
 
 function MyAccount() {
   return (
-    <h1>MyAccount</h1>
+    <h1>My Account Testing</h1>
   )
 }
 
