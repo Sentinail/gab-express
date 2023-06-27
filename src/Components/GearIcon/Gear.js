@@ -1,19 +1,29 @@
-import React, { useContext } from 'react'
-import { SquareDiv, RotatedDiv1, RotatedDiv2, RotatedDiv3, RotatedDiv4, GearHole } from "./GearStyles"
+import React, {useContext, useRef} from 'react'
+import { GearContainer, GearBody, GearTeeth, GearHole } from './GearStyles'
 import { stylesContext } from '../../ContextProviders/StylesProvider'
 
-function GearIcon(props) {
-    const { primaryColor, settingsPosition } = useContext(stylesContext);
+function Gear(props) {
+    const { size } = props 
+    const styles = useContext(stylesContext);
+    const ref = useRef()
+
+    const rotateGear = (el) => {
+        el.current.classList.toggle("rotate")
+    }
 
     return (
-        <SquareDiv backgroundColor={primaryColor} settingsPosition={settingsPosition} style={{transform: `scale(${props.size})`}}>
-            <RotatedDiv1 backgroundColor={primaryColor}></RotatedDiv1>
-            <RotatedDiv2 backgroundColor={primaryColor}></RotatedDiv2>
-            <RotatedDiv3 backgroundColor={primaryColor}></RotatedDiv3>
-            <RotatedDiv4 backgroundColor={primaryColor}></RotatedDiv4>
-            <GearHole></GearHole>
-        </SquareDiv>
+        <div>
+            <GearContainer ref={ref} size={size} settingsPosition={styles.settingsPosition} onClick={() => {rotateGear(ref)}}>
+                <GearBody size={size} backgroundColor={styles.primaryColor}>
+                    <GearTeeth size={size} degrees={180} backgroundColor={styles.primaryColor}></GearTeeth>
+                    <GearTeeth size={size} degrees={90} backgroundColor={styles.primaryColor}></GearTeeth>
+                    <GearTeeth size={size} degrees={45} backgroundColor={styles.primaryColor}></GearTeeth>
+                    <GearTeeth size={size} degrees={-45} backgroundColor={styles.primaryColor}></GearTeeth>
+                    <GearHole size={size} secondaryColor={styles.secondaryColor}></GearHole>
+                </GearBody>
+            </GearContainer>
+        </div>
     )
 }
 
-export default GearIcon
+export default Gear
