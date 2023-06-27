@@ -8,9 +8,21 @@ const StylesProvider = (props) => {
     const [ primaryColor, setPrimaryColor ] = useState([47, 46, 46, 1]);
     const [ secondaryColor, setSecondaryColor ] = useState([75, 141, 193, 1]);
     const [ supportingColor, setSupportingColor ] = useState([47, 46, 46, 1]);
+    const [settingsPosition, setSettingsPosition] = useState(["5px", "5px"])
 
     return (
-        <stylesContext.Provider value={{primaryColor, setPrimaryColor, secondaryColor, setSecondaryColor, supportingColor, setSupportingColor}}>
+        <stylesContext.Provider 
+        value=
+        {{
+            primaryColor, 
+            setPrimaryColor, 
+            secondaryColor, 
+            setSecondaryColor, 
+            supportingColor, 
+            setSupportingColor, 
+            settingsPosition, 
+            setSettingsPosition
+        }}>
             {children}
         </stylesContext.Provider>
     )

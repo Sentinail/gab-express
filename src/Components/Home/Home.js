@@ -1,10 +1,11 @@
 import React from 'react'
 import Footer from '../Footer/Footer'
+import { HomeContainer } from './HomeStyles'
 
 function Home() {
   return (
     <>
-      <div>Home</div>
+      <HomeContainer></HomeContainer>
       <Footer></Footer>
     </>
   )

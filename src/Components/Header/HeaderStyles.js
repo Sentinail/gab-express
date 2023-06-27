@@ -18,6 +18,9 @@ export const Container = styled.div`
     align-items: center;
     
     padding: 0px calc(100vw - 88.889vw);
+    position: sticky;
+    top: 0px;
+    left: 0px;
 
     & img {
         width: 50px;
@@ -35,8 +38,13 @@ export const Container = styled.div`
         padding: 10px;
 
         &:hover {
-            color: ${props => {return `rgb(${props.secondaryColor[0]}, ${props.secondaryColor[1]}, ${props.secondaryColor[2]}, ${props.secondaryColor[3]})`}}
+            color: ${props => {return `rgb(${props.secondaryColor[0]}, ${props.secondaryColor[1]}, ${props.secondaryColor[2]}, ${props.secondaryColor[3]})`}};
         }
+    }
+
+    & .rotate {
+        transform: rotate(360deg);
+        background-color: red;
     }
 `
 

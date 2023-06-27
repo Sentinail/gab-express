@@ -1,8 +1,9 @@
 import React, { useContext } from 'react'
-import { Container, NavBar, DonateLoginContainer, LoginButton, DonateButton } from './HeaderStyles'
+import { Container, NavBar, DonateLoginContainer, LoginButton, DonateButton, } from './HeaderStyles'
 import { stylesContext } from '../../ContextProviders/StylesProvider'
 import logo from "../../Assets/Images/GAB logo.png"
 import { Link, useNavigate } from 'react-router-dom'
+import GearIcon from '../GearIcon/Gear'
 
 function Header() {
     const goTo = useNavigate()
@@ -24,6 +25,7 @@ function Header() {
                     <LoginButton onClick={() => {goTo("/login")}}> SIGN-IN </LoginButton>
                 </DonateLoginContainer>
             </Container>
+            <GearIcon size={0.5}></GearIcon>
         </>
     )
 }
