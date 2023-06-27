@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import styled from 'styled-components'
 import { stylesContext } from '../ContextProviders/StylesProvider'
 
@@ -10,6 +10,10 @@ const StyledRegister = styled.div`
 
 function MyAccount(props) {
   const styles = useContext(stylesContext);
+  useEffect(() => {
+    styles.setPrimaryColor("rgb(0, 0, 0, 1)");
+  })
+  
 
   return (
     <StyledRegister backgroundColor={styles.secondaryColor}>
