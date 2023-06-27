@@ -1,11 +1,18 @@
 import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
+    @font-face {
+            font-family: Agharti;
+            src: url("./Assets/Fonts/Agharti-BlackSemiCondensed.ttf");
+    }
+
     * {
         padding: 0px;
         margin: 0px;
         box-sizing: border-box;
+        font-family: Agharti;
     }
+
 
 
     ::-webkit-scrollbar {

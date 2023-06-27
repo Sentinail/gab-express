@@ -7,6 +7,8 @@ import Login from './Components/Login/Login';
 import MyAccount from './Components/My_Account/MyAccount';
 import OrderForm from './Components/Order_Form/OrderForm';
 import Register from './Components/Register/Register';
+import TopDonors from './Components/Top_Donors/TopDonors';
+import About from './Components/About/About';
 
 
 const router = createBrowserRouter([
@@ -38,6 +40,14 @@ const router = createBrowserRouter([
                 path: "/orderform",
                 element: <OrderForm></OrderForm>,
             },
+            {
+                path: "/topdonors",
+                element: <TopDonors></TopDonors>
+            },
+            {
+                path: "/about",
+                element: <About></About>
+            }
         ]
     }
 ])
