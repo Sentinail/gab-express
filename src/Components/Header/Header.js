@@ -1,13 +1,15 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { Container, NavBar, DonateLoginContainer, LoginButton, DonateButton, } from './HeaderStyles'
 import { stylesContext } from '../../ContextProviders/StylesProvider'
 import logo from "../../Assets/Images/GAB logo.png"
 import { Link, useNavigate } from 'react-router-dom'
 import Gear from '../GearIcon/Gear'
+import SettingsItems from '../SettingsItems/SettingsItems'
 
 function Header() {
     const goTo = useNavigate()
     const { primaryColor, secondaryColor } = useContext(stylesContext);
+    const [settingsIsVisible, setSettingsIsVisible] = useState(false);
 
     return (
         <>
@@ -24,7 +26,9 @@ function Header() {
                     <DonateButton backgroundColor={secondaryColor} onClick={() => {goTo("/orderform")}} > DONATE </DonateButton>
                     <LoginButton onClick={() => {goTo("/login")}}> SIGN-IN </LoginButton>
                 </DonateLoginContainer>
-                <Gear size={0.7}></Gear>
+                <Gear size={0.7} settingsIsVisible={settingsIsVisible} setSettingsIsVisible={setSettingsIsVisible}></Gear>
+                <SettingsItems className={settingsIsVisible? "isVisible" : ""}></SettingsItems>
+                
             </Container>
         </>
     )

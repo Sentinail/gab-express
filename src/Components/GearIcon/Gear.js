@@ -3,12 +3,14 @@ import { GearContainer, GearBody, GearTeeth, GearHole } from './GearStyles'
 import { stylesContext } from '../../ContextProviders/StylesProvider'
 
 function Gear(props) {
-    const { size } = props 
+    const { size, settingsIsVisible, setSettingsIsVisible} = props 
     const styles = useContext(stylesContext);
     const ref = useRef()
 
     const rotateGear = (el) => {
         el.current.classList.toggle("rotate")
+        setSettingsIsVisible(!settingsIsVisible)
+
     }
 
     return (
