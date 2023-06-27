@@ -1,20 +1,20 @@
 import React from 'react'
 import { Outlet } from 'react-router-dom'
-import Header from './Components/Header'
-import GlobalStyle from './Components/GlobalStyle'
+import GlobalStyle from './GlobalStyle'
 import StylesProvider from './ContextProviders/StylesProvider'
+import Header from './Components/Header/Header';
 
 function App() {
 
   return (
     <>
-    <StylesProvider>
-      <GlobalStyle />
-      <Header></Header>
-      <main>
-        <Outlet></Outlet>
-      </main>
-    </StylesProvider>
+      <StylesProvider>
+        <GlobalStyle></GlobalStyle>
+        <Header></Header>
+        <main>
+          <Outlet></Outlet>
+        </main>
+      </StylesProvider>
     </>
   )
 }
