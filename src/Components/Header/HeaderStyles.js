@@ -22,6 +22,8 @@ export const Container = styled.div`
     top: 0px;
     left: 0px;
 
+    z-index: 100;
+
     & img {
         width: 50px;
         height: auto;
@@ -46,6 +48,17 @@ export const Container = styled.div`
         transform: rotate(360deg);
         background-color: red;
     }
+`
+
+export const HeaderContainerShadow = styled.div`
+        width: 100%;
+        height: 80px;
+        position: fixed;
+        top: 0px;
+        left: 0px;
+        box-shadow: 0px 25px 100px 100px #2F2E2E;
+        background-color: red;
+        z-index: 5
 `
 
 export const NavBar = styled.div`
