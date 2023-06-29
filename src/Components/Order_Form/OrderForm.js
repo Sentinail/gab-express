@@ -12,7 +12,7 @@ function OrderForm() {
         <Select></Select>
       </div>
       <div className='donate-bottom'>
-        {orderCardDatasObj.map(data => {return <OrderCards key={data.id} img={data.img} price={data.price}></OrderCards>})}
+        {orderCardDatasObj.map(data => {return <OrderCards key={data.id} id={data.id} img={data.img} price={data.price}></OrderCards>})}
       </div>
     </OrderFormContainer>
   )

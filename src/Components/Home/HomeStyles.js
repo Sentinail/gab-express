@@ -35,7 +35,6 @@ export const SectionContainer = styled.div`
         align-items: center;
         position: relative; 
         gap: 100px
-        
     }
 
     & .items-container.animated-slide {
