@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import App from './App';
-import { createBrowserRouter, RouterProvider, Navigate } from 'react-router-dom';
 import Home from './Components/Home/Home';
 import Login from './Components/Login/Login';
 import MyAccount from './Components/My_Account/MyAccount';
@@ -9,49 +9,35 @@ import OrderForm from './Components/Order_Form/OrderForm';
 import Register from './Components/Register/Register';
 import TopDonors from './Components/Top_Donors/TopDonors';
 import About from './Components/About/About';
+import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
+import TestComponent from './Components/Test_Components/TestComponent';
 
-const router = createBrowserRouter([
-    {
-        path: "/",
-        element: <App></App>,
-        children: [
-            {
-                path: "/",
-                element: <Navigate to="/home"></Navigate>
-            },
-            {
-                path: "/home",
-                element: <Home></Home>,
-            },
-            {
-                path: "/login",
-                element: <Login></Login>,
-            },
-            {
-                path: "/register",
-                element: <Register></Register>,
-            },
-            {
-                path: "/myaccount",
-                element: <MyAccount></MyAccount>,
-            },
-            {
-                path: "/orderform",
-                element: <OrderForm></OrderForm>,
-            },
-            {
-                path: "/topdonors",
-                element: <TopDonors></TopDonors>
-            },
-            {
-                path: "/about",
-                element: <About></About>
-            },
-        ]
-    }
-])
+const ScrollToTop = () => {
+  const location = useLocation();
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-    <RouterProvider router={router}></RouterProvider>
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location]);
+
+  return null;
+};
+
+ReactDOM.createRoot(document.getElementById('root')).render(
+    <BrowserRouter>
+      <ScrollToTop />
+      <Routes>
+        <Route path="/" element={<App />}>
+          <Route path="/" element={<Navigate to="/home" />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/myaccount" element={<MyAccount />} />
+          <Route path="/orderform" element={<OrderForm />} />
+          <Route path="/topdonors" element={<TopDonors />} />
+          <Route path="/about" element={<About />} />
+        </Route>
+        <Route path="/test" element={<TestComponent />} />
+      </Routes>
+    </BrowserRouter>
 );

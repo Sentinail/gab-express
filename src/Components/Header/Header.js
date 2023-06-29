@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import { Container, NavBar, DonateLoginContainer, LoginButton, DonateButton, } from './HeaderStyles'
+import { Container, NavBar, DonateLoginContainer, LoginButton, DonateButton, HeaderContainerShadow } from './HeaderStyles'
 import { stylesContext } from '../../ContextProviders/StylesProvider'
 import logo from "../../Assets/Images/GAB logo.png"
 import { Link, useNavigate } from 'react-router-dom'
@@ -12,7 +12,8 @@ function Header() {
     const [settingsIsVisible, setSettingsIsVisible] = useState(false);
 
     return (
-        <>
+        <>  
+            <HeaderContainerShadow></HeaderContainerShadow>
             <Container backgroundColor={primaryColor} secondaryColor={secondaryColor}>
                 <img src={logo} alt='logo' onClick={() => {goTo("/home")}}></img>
                 <NavBar>
@@ -28,7 +29,6 @@ function Header() {
                 </DonateLoginContainer>
                 <Gear size={0.7} settingsIsVisible={settingsIsVisible} setSettingsIsVisible={setSettingsIsVisible}></Gear>
                 <SettingsItems className={settingsIsVisible? "isVisible" : ""}></SettingsItems>
-                
             </Container>
         </>
     )
