@@ -86,6 +86,12 @@ export const IntroductionContainer = styled.div`
     justify-content: space-between;
     padding: 100px;
     position: relative;
+    animation: fadeIn 0.5s ease-in-out;
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-50px);}
+            to { opacity: 1; transform: translateY(0px);}
+        }
 
     & {
         h1:nth-child(1) {
@@ -115,4 +121,80 @@ export const InterestedToHelpSection = styled.div`
     width: 100%;
     height: 100vh;
     background-color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 100px;
+    font-size: 3em;
+    position: relative;
+    
+    & button {
+        transition: all 0.2s;
+        font-size: 3rem;
+        
+    }
+
+    & img {
+        position: absolute;
+        bottom: 30px;
+        left: -100px;
+        width: 100px;
+        transition: all 5s linear;
+    }
+
+    & img.move {
+        animation: move 15s linear infinite;
+        @keyframes move {
+            0% {
+                left: -100px;
+                transform: scaleX(1);
+            }
+            25% {
+                left: 100%;
+                transform: scaleX(1);
+            }
+            50% {
+                left: 100%;
+                transform: scaleX(-1);
+            }
+            75% {
+                left: -100px;
+                transform: scaleX(-1);
+            }
+            100% {
+                left: -100px;
+                transform: scaleX(1);
+            }
+            /* 55% {
+                left: 500px;
+                transform: scaleX(-1);
+            }
+            75% {
+                left: 0px;
+                transform: scaleX(-1);
+            }
+            100% {
+                left: 0px;
+                transform: scaleX(-1);
+            } */
+        }
+    }
+`
+
+export const DonateNowButton = styled.button`
+    min-width: 100px;
+
+    padding: 10px;
+    background-color: ${props => {return `rgb(${props.backgroundColor[0]}, ${props.backgroundColor[1]}, ${props.backgroundColor[2]}, ${props.backgroundColor[3]})`}};
+
+    border: none;
+    border-radius: 10px;
+
+    color: #FFFFFF;
+
+    &:hover {
+        cursor: pointer;
+        scale: 1.1;
+    }
 `

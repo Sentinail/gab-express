@@ -13,6 +13,10 @@ const GlobalStyle = createGlobalStyle`
         font-family: Agharti;
     }
 
+    body {
+        overflow-x: hidden;
+    }
+
 
 
     ::-webkit-scrollbar {

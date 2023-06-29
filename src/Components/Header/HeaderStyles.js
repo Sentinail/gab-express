@@ -46,7 +46,6 @@ export const Container = styled.div`
 
     & .rotate {
         transform: rotate(360deg);
-        background-color: red;
     }
 `
 
@@ -56,8 +55,7 @@ export const HeaderContainerShadow = styled.div`
         position: fixed;
         top: 0px;
         left: 0px;
-        box-shadow: 0px 25px 100px 100px #2F2E2E;
-        background-color: red;
+        box-shadow: 0px 25px 100px 100px #2F2E2E;   
         z-index: 5
 `
 
