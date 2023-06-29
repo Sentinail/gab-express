@@ -7,7 +7,7 @@ import Header from './Components/Header/Header';
 function App() {
 
   return (
-    <>
+        <>
       <StylesProvider>
         <GlobalStyle></GlobalStyle>
         <Header></Header>
@@ -16,7 +16,7 @@ function App() {
         </main>
       </StylesProvider>
     </>
-  )
+  );
 }
 
 export default App

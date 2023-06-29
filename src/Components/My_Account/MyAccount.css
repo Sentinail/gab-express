@@ -1,0 +1,91 @@
+.profile-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-image: url(../../Assets/Images/Giving.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed; 
+    min-height: 100vh;
+  }
+
+  * {
+    border-radius: 10px;
+  }
+
+  .left-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    float: left;
+  }
+
+  .profile-picture {
+    width: 300px;
+    height: 300px;
+  }
+
+  .member-since {
+    width: 300px;
+    height: 57px;
+    background-color: #4B8DC1;
+    color: white;
+    text-align: center;
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+
+  .total-donation {
+    width: 300px;
+    height: 57px;
+    text-align: center;
+    font-size: 30px;
+    margin-top: 5px;
+    background-color: #4B8DC1;
+    color: white;
+  }
+
+  .center-column {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    float: left;
+    gap: 0px;
+  }
+
+  .label {
+    width: 576px;
+    height: 35px;
+    color: white;
+
+  }
+
+  .right-column {
+    float: left;
+  }
+
+  .about-me {
+    width: 400px;
+    height: 550px;
+    color: white;
+    justify-content: center;
+    text-align: center;
+    margin: 0 10px;
+    background-color: rgba(0, 0, 0, 0.5)
+  }
+
+  .input-box {
+    width: 550px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border-color: rgba(0, 0, 0, 0.5);;
+
+  }
+
+  .input-boxrecent {
+    width: 550px;
+    height: 300px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border-color: rgba(0, 0, 0, 0.5);;
+  }

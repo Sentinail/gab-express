@@ -10,7 +10,6 @@ import Register from './Components/Register/Register';
 import TopDonors from './Components/Top_Donors/TopDonors';
 import About from './Components/About/About';
 
-
 const router = createBrowserRouter([
     {
         path: "/",
