@@ -11,7 +11,7 @@ import TopDonors from './Components/Top_Donors/TopDonors';
 import About from './Components/About/About';
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import CallServer from './Components/Test_Components/CallServer';
+import TestComponent from './Components/Test_Components/TestComponent';
 
 const ScrollToTop = () => {
   const location = useLocation();
@@ -37,7 +37,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Route path="/topdonors" element={<TopDonors />} />
           <Route path="/about" element={<About />} />
         </Route>
-        <Route path="/test" element={<CallServer />} />
+        <Route path="/test" element={<TestComponent />} />
       </Routes>
     </BrowserRouter>
 );

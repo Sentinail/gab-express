@@ -74,6 +74,12 @@ export const SectionContainer = styled.div`
         align-items: center;
         gap: 30px;
     }
+
+    @media screen and (max-width: 1000px) {
+        & .items-container{
+            flex-direction: column
+        }
+    }
 `
 
 export const IntroductionContainer = styled.div`
@@ -146,6 +152,7 @@ export const InterestedToHelpSection = styled.div`
 
     & img.move {
         animation: move 15s linear infinite;
+
         @keyframes move {
             0% {
                 left: -100px;
@@ -167,18 +174,6 @@ export const InterestedToHelpSection = styled.div`
                 left: -100px;
                 transform: scaleX(1);
             }
-            /* 55% {
-                left: 500px;
-                transform: scaleX(-1);
-            }
-            75% {
-                left: 0px;
-                transform: scaleX(-1);
-            }
-            100% {
-                left: 0px;
-                transform: scaleX(-1);
-            } */
         }
     }
 `
