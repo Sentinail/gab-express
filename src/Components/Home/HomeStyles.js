@@ -31,9 +31,10 @@ export const SectionContainer = styled.div`
         height: auto;
         display: flex;
         flex-direction: ${props => {return props.flexDirection}};
-        justify-content: space-around;
+        justify-content: center;
         align-items: center;
-        position: relative;
+        position: relative; 
+        gap: 100px
         
     }
 
