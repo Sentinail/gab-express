@@ -20,15 +20,21 @@ function TopDonors() {
   const [data, setData] = useState()
 
   const getUsersSorted = async () => {
-    const data = await axios.get("http://localhost:5000/users")
-    const users = await data.data
-    users.sort((a, b) => b.totalDonation - a.totalDonation);
-    return users
-    
+    try {
+      const response = await axios.get("http://localhost:5000/users")
+      const users = response.data
+      users.sort((a, b) => b.totalDonation - a.totalDonation);
+      return users;
+    } catch (error) {
+      console.log(error);
+      throw error;
+    }
   }
 
   useEffect(() => {
-    getUsersSorted().then(res => {setData(res)})
+    getUsersSorted()
+      .then(res => setData(res))
+      .catch(error => console.log(error));
   }, [])
 
   console.log(data)
