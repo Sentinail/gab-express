@@ -24,17 +24,64 @@ export const SectionContainer = styled.div`
     justify-content: center;
     align-items: center;
     background-color: ${props => {return `rgb(${props.backgroundColor[0]}, ${props.backgroundColor[1]}, ${props.backgroundColor[2]}, ${props.backgroundColor[3]})`}};
-    
+    padding: 30px;
 
     & .items-container {
         width: 100%;
+        min-width: 200px;
+        max-width: 350px;
         height: auto;
         display: flex;
         flex-direction: ${props => {return props.flexDirection}};
         justify-content: center;
         align-items: center;
         position: relative; 
-        gap: 100px
+        gap: 100px;
+
+        & img {
+            display: block;
+            width: 100%;
+            min-width: 350px;
+            max-width: 500px;
+            border-radius: 20px;
+            aspect-ratio: 3 / 2;
+        }
+        & .content-container {
+            & h1 {
+                font-family: sans-serif ;
+                text-align: center;
+                font-size: 3rem;
+            }
+
+            & p {
+                font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+                font-size: 2rem;
+            }
+            height: 100%;
+            width: 100%;
+            min-width: 500px;   
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+
+            @media screen and (max-width: 576px) {
+                & {
+                    min-width: 300px;
+                }
+
+                & h1 {
+                    font-family: sans-serif ;
+                    text-align: center;
+                    font-size: 2rem;
+                }
+                & p {
+                    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+                    font-size: 1rem;
+                }
+                
+            }
+        }
     }
 
     & .items-container.animated-slide {
@@ -45,33 +92,6 @@ export const SectionContainer = styled.div`
     & .items-container.animated-slide.slide {
         top: 0px;
         opacity: 1;
-    }
-
-    & img {
-        display: block;
-        width: 600px;
-        height: calc(600px / 1.5);
-        border-radius: 20px
-    }
-
-    & div {
-        & h1 {
-            font-family: sans-serif ;
-            text-align: center;
-            font-size: 3rem;
-        }
-
-        & p {
-            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-            font-size: 2rem;
-            max-width: 450px
-        }
-        height: 100%;
-        width: 500px;   
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 30px;
     }
 
     @media screen and (max-width: 1000px) {
@@ -89,15 +109,15 @@ export const IntroductionContainer = styled.div`
     min-height: calc(90vh - 80px);
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    padding: 100px;
+    justify-content: space-around;
+    padding: 50px;
     position: relative;
     animation: fadeIn 0.5s ease-in-out;
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-50px);}
-            to { opacity: 1; transform: translateY(0px);}
-        }
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(-50px);}
+        to { opacity: 1; transform: translateY(0px);}
+    }
 
     & {
         h1:nth-child(1) {
@@ -121,6 +141,26 @@ export const IntroductionContainer = styled.div`
         bottom: 50px;
         right: 50px;
     }
+
+    @media screen and (max-width: 768px) {
+        & h1:nth-child(1) {
+            font-size: 9rem;
+        }
+
+        & h1:nth-child(2) {
+            font-size: 3.75rem;
+        }
+    }
+
+    @media screen and (max-width: 768px) {
+        & h1:nth-child(1) {
+            font-size: 6rem;
+        }
+
+        & h1:nth-child(2) {
+            font-size: 2.5rem;
+        }
+    }
 `
 
 export const InterestedToHelpSection = styled.div`
@@ -135,6 +175,11 @@ export const InterestedToHelpSection = styled.div`
     font-size: 3em;
     position: relative;
     
+    & h1 {
+        font-size: 6rem;
+        text-align: center;
+    }
+
     & button {
         transition: all 0.2s;
         font-size: 3rem;
@@ -173,6 +218,11 @@ export const InterestedToHelpSection = styled.div`
                 left: -100px;
                 transform: scaleX(1);
             }
+        }
+    }
+    @media screen and (max-width: 400px) {
+        & h1 {
+            font-size: 5rem;
         }
     }
 `

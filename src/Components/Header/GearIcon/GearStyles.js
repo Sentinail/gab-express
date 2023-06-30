@@ -18,6 +18,8 @@ export const GearContainer = styled.div`
     &.rotate {
         rotate: 360deg;
     }
+
+    z-index: 100;
 `
 
 export const GearBody = styled.div`

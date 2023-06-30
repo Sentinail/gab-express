@@ -12,4 +12,6 @@ export const SettingsItemContainer = styled.div`
     &.isVisible {
         bottom: 0px;
     }
+
+    z-index: 100;
 `

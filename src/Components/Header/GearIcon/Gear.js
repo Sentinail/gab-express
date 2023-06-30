@@ -1,6 +1,6 @@
 import React, {useContext, useRef} from 'react'
 import { GearContainer, GearBody, GearTeeth, GearHole } from './GearStyles'
-import { stylesContext } from '../../ContextProviders/StylesProvider'
+import { stylesContext } from '../../../ContextProviders/StylesProvider';
 
 function Gear(props) {
     const { size, settingsIsVisible, setSettingsIsVisible} = props 
