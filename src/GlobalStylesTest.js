@@ -15,6 +15,15 @@ const GlobalStyleForTest = createGlobalStyle`
         display: flex;
         align-items: center;
         justify-content: center;
+
+        & #root {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+        }
     }
 `
 
