@@ -8,40 +8,41 @@ const StyledDiv = styled.div`
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
-  min-height: 100vh;  
+  min-height: 100vh;
 
   & .profile-container {
-  background-image: url(../../Assets/Images/Giving.jpg);
-  background-repeat: no-repeat;
-  background-size: cover;
-  display: flex;
-  align-items: self-start;
-  flex-direction: row;
-  min-height: 100vh;
-  padding-top: 110px;
-  justify-content: space-evenly;    
-}
+    background-image: url(../../Assets/Images/Giving.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    align-items: self-start;
+    flex-direction: row;
+    min-height: 100vh;
+    padding-top: 110px;
+    justify-content: space-evenly;
+  }
 
   & .left-column {
-    display: flex;    
+    display: flex;
     flex-direction: column;
     align-items: flex-end;
     margin-left: 50px;
-    margin-right: 20px; 
-     
-      & .member-since, .total-donation {
-        background-color: #4B8DC1; 
-        border-radius: 5px;
-      }
+    margin-right: 20px;
+
+    & .member-since,
+    .total-donation {
+      background-color: #4b8dc1;
+      border-radius: 5px;
+    }
   }
 
   & .left-column > div:not(:last-child) {
-    margin-bottom: 10px; 
+    margin-bottom: 10px;
   }
 
   & .profile-picture {
     width: 300px;
-    height: 300px;    
+    height: 300px;
     border-radius: 5px;
   }
 
@@ -61,24 +62,45 @@ const StyledDiv = styled.div`
     align-items: flex-start;
   }
 
-  & .fullName, .email, .username, .recentActivity {    
-    background-color: rgba(0, 0, 0, 0.5);    
+  & .fullName,
+  .email,
+  .username,
+  .recentActivity {
+    background-color: rgba(0, 0, 0, 0.5);
     border-radius: 5px;
   }
 
   & .fullName {
     width: 580px;
     height: 100px;
+    padding-left: 20px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    font-size: 2em;
+    font-weight: bold;
   }
 
   & .username {
     width: 580px;
     height: 80px;
+    padding-left: 20px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    font-size: 2em;
+    font-weight: bold;
   }
 
   & .email {
     width: 580px;
     height: 80px;
+    padding-left: 20px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    font-size: 2em;
+    font-weight: bold;
   }
 
   & .recentActivity {
@@ -93,15 +115,30 @@ const StyledDiv = styled.div`
   }
 
   & .about-me {
-    width: 315px;   
+    width: 315px;
     height: 690px;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.5);          
   }
 
   & * {
-  color: white;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-}
+    color: white;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+      Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+      sans-serif;
+  }
+
+  & ul {
+    list-style: none;
+  }
+
+  & ul li {
+    padding: 10px;
+  }
+
+  & p {
+      font-size: 2em;
+      font-weight: bold;
+  }
 `;
 
 function Profile() {
@@ -122,8 +159,8 @@ function Profile() {
           <div className="profile-picture">
             <img
               src={require("../../Assets/Images/Mukha.jpg")}
-              alt="Profile Picture"
-              style={{ width: "300px", height: "300px", }}
+              alt="Thor"
+              style={{ width: "300px", height: "300px" }}
             />
           </div>
           <div className="member-since">
@@ -135,11 +172,11 @@ function Profile() {
         </div>
         <div className="center-column">
           <div>
-            Full name
+            <div className="label">Full name</div>
             <div className="fullName">Craig Wilmore</div>
           </div>
           <div>
-            Username            
+            <div className="label">Username</div>
             <div className="username">secretdonor75</div>
           </div>
           <div>
@@ -149,17 +186,29 @@ function Profile() {
           <div>
             <div className="label">Recent Activity</div>
             <div className="recentActivity">
-              <ul style={{ listStyleType: "none" }}>
-                <li>2023-01-01      100 USD   First donation</li>
-                <li>2023-02-14      200 USD   Valentine's Day donation</li>
-                <li>2023-03-08      100 USD   Birthday donation</li>
-                <li>2023-04-15       99 USD   Random donation</li>
-              </ul>              
+              <ul>
+                <li>2023-01-01 100 USD First donation</li>
+                <li>2023-02-14 200 USD Valentine's Day donation</li>
+                <li>2023-03-08 100 USD Birthday donation</li>
+                <li>2023-04-15 99 USD Random donation</li>
+              </ul>
             </div>
           </div>
         </div>
         <div className="right-column">
-          <div className="about-me">About Me</div>
+          <div className="about-me">
+            <p classname="aboutme">About Me</p>
+            <ul>
+              <li>August 11, 1983, Melbourne, Australia</li>
+              <li>Height: 6'3"</li>
+              <li>Net worth: $130 million</li>
+              <li>Spouse: Elsa Pataky (m. 2010)</li>
+              <li>
+                Children: India Rose (b. 2012), twins Tristan and Sasha (b.
+                2014)
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
       <Link to="/register"></Link>

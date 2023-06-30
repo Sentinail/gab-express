@@ -39,24 +39,18 @@ const StyledDiv = styled.div`
     }
 
     & .login-button {
-        width: 141px;
-        height: 59px;
         background-color: #4B8DC1;
-        color: white;    
+        color:#ccc;
+        padding: 10px;
         border: none;
-        cursor: pointer;    
-        border-radius: 5px; 
+        cursor: pointer;
     }
 
     a {
         text-decoration: none;
-        color: #4B8DC1;
-    }
-
-    p {
-        color: white;
     }
 `
+
 
 function Login () {
   return (
@@ -64,7 +58,7 @@ function Login () {
         <div className="login-form">
             <input type="email" placeholder="Email" required />
             <input type="password" placeholder="Password" required />
-            <button type="login" className="login-button">LOGIN<Link to={"/myaccount"}></Link></button>
+            <button type="login" className="login-button"><Link to={"/myaccount"}> LOGIN </Link></button>
             <p>Not yet registered? 
                 <br>
                 </br>
