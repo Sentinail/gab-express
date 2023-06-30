@@ -62,6 +62,11 @@ const StyledDiv = styled.div`
 
     a {
         text-decoration: none;
+        color: #4B8DC1;
+    }
+
+    p {
+      color:white;
     }
 `
 
