@@ -7,6 +7,7 @@ export const TopDonorsContainer = styled.div`
     align-items: center;
     flex-direction: column;
     padding: 30px;
+    background-color: ${props => {return `rgb(${props.backgroundColor[0]}, ${props.backgroundColor[1]}, ${props.backgroundColor[2]}, ${props.backgroundColor[3]})`}};;
 
     & .board {
         margin-top: 100px;

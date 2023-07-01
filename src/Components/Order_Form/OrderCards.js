@@ -11,7 +11,7 @@ function OrderCards(props) {
 
 
     const makePayment = (id, quantity) => {
-        if (quantity) {
+        if (quantity > 0) {
             axios.post("http://localhost:5000/create-checkout-session", {
             item: {
                 id: id,

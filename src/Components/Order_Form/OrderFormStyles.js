@@ -7,6 +7,9 @@ export const OrderFormContainer = styled.div`
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-size: cover;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
     & .donate-top {
         width: 100%;
@@ -42,13 +45,13 @@ export const OrderFormContainer = styled.div`
     }
 
     & .donate-bottom {
-        width: 100%;
+        width: 80%;
         height: 100%;
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         justify-items: center;
         align-items: center;
-        gap: 50px;
+        grid-row-gap: 50px;
         padding-top: 50px;
         padding-bottom: 50px;
 

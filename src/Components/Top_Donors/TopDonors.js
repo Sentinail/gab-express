@@ -43,7 +43,7 @@ function TopDonors() {
 
 
   return (
-    <TopDonorsContainer>
+    <TopDonorsContainer backgroundColor={styles.supportingColor}>
       <div className='board'>
         <h1 className='title'>TOP DONORS</h1>
         <div className='cells'>
