@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
+import axios from "axios"
+import { useNavigate } from 'react-router-dom'
 
 const RegisterContainer = styled.div`
     width: 100%;
@@ -8,11 +10,22 @@ const RegisterContainer = styled.div`
     display: flex;
     flex-direction: row-reverse;
     align-items: center;
-    padding: 50px;
     justify-content: center;
-
     background-image: url(${require("../../Assets/Images/Sign-in_Bg_2.jpg")});
     background-size: cover;
+
+    @media screen and (max-width: 450px) {
+        & form {
+            width: 100%;
+            height: 100%;
+
+            & div {
+                border-radius: 0px;
+                width: 100%;
+                height: 100%;
+            }
+        }
+    }
 `
 
 const RegisterFormStyle = styled.div`
@@ -94,26 +107,109 @@ const Button = styled.button`
 `
 
 const RegisterForm = () => {
-  return (
-    <form action="">
-        <RegisterFormStyle>
-            <h1>REGISTER</h1>
-            <div className='form'>
-                <input autoComplete='on' id='first-name' type="text" placeholder='First Name' />
-                <input autoComplete='on' id='last-name' type="text" placeholder='Last Name' />
-                <input autoComplete='on' id='user-name' type="text" placeholder='Username'/>
-                <input autoComplete='on' id='email' type="email" placeholder='Email'/>
-                <input autoComplete='on' id='password' type="password" placeholder='Enter Password'/>
-                <input autoComplete='on' id='confirm-password' type="password" placeholder='Confirm Password'/>
-            </div>
-            <div className="login-container">
-                <Button> REGISTER </Button>
-                <p> Already registered? </p>
-                <Link to="/login"> Login </Link>
-            </div>
-        </RegisterFormStyle>
-    </form>
-  )
+    const navigate = useNavigate()
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
+    const [userName, setUserName] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
+
+    const registerUser = (event) => {
+        event.preventDefault();
+        const isValidName = firstName.length > 0 && lastName.length > 0 && userName.length > 0;
+        const isValidEmail = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(email)
+        const isValidPassword = password === confirmPassword
+
+
+        if (isValidName && isValidEmail && isValidPassword) {
+            const date = new Date()
+            let day = date.getDate()
+            let month = date.getMonth() + 1
+            let year = date.getFullYear()
+            let fullDate = `${month}-${day}-${year}`
+
+            axios.post("http://localhost:5000/users", {
+                fullName: `${firstName} ${lastName}`,
+                userName: userName,
+                emailAddress: email,
+                password: password,
+                memberSince: fullDate,
+                totalDonation: 0
+            }).then(res => {
+                alert(res.data.message)
+                res.data.authenticated ? navigate("/login") : navigate("/register")
+            }).catch(err => {
+                alert(err)
+            })
+        } else {
+            alert("Invalid Registration")
+        }
+    }
+
+
+    return (
+        <form action="">
+            <RegisterFormStyle>
+                <h1>REGISTER</h1>
+                <div className='form'>
+                    <input
+                    onChange={(e) => setFirstName(e.target.value)}
+                    autoComplete='on'
+                    id='first-name'
+                    type="text"
+                    placeholder='First Name'
+                    required
+                    />
+                    <input
+                    onChange={(e) => setLastName(e.target.value)}
+                    autoComplete='on'
+                    id='last-name'
+                    type="text"
+                    placeholder='Last Name'
+                    required
+                    />
+                    <input
+                    onChange={(e) => setUserName(e.target.value)}
+                    autoComplete='on'
+                    id='user-name'
+                    type="text"
+                    placeholder='Username'
+                    required
+                    />
+                    <input
+                    onChange={(e) => setEmail(e.target.value)}
+                    autoComplete='on'
+                    id='email'
+                    type="email"
+                    placeholder='Email'
+                    required
+                    />
+                    <input
+                    onChange={(e) => setPassword(e.target.value)}
+                    autoComplete='on'
+                    id='password'
+                    type="password"
+                    placeholder='Enter Password'
+                    required
+                    />
+                    <input
+                    onChange={(e) => setConfirmPassword(e.target.value)}
+                    autoComplete='on'
+                    id='confirm-password'
+                    type="password"
+                    placeholder='Confirm Password'
+                    required
+                    />
+                </div>
+                <div className="login-container">
+                    <Button onClick={(event) => {registerUser(event)}}> REGISTER </Button>
+                    <p> Already registered? </p>
+                    <Link to="/login"> Login </Link>
+                </div>
+            </RegisterFormStyle>
+        </form>
+    )
 }
 
 

@@ -106,7 +106,7 @@ export const IntroductionContainer = styled.div`
     background-position: center;
     background-size: cover;
     width: 100%;
-    min-height: calc(90vh - 80px);
+    min-height: calc(100vh - 80px);
     display: flex;
     flex-direction: column;
     justify-content: space-around;

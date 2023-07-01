@@ -8,11 +8,23 @@ const LoginContainer = styled.div`
     display: flex;
     flex-direction: row-reverse;
     align-items: center;
-    padding: 50px;
     justify-content: center;
 
     background-image: url(${require("../../Assets/Images/Sign-in_Bg_2.jpg")});
     background-size: cover;
+
+    @media screen and (max-width: 450px) {
+        & form {
+            width: 100%;
+            height: 100%;
+
+            & div {
+                border-radius: 0px;
+                width: 100%;
+                height: 100%;
+            }
+        }
+    }
 `
 
 const LoginFormStyle = styled.div`
@@ -101,8 +113,8 @@ const LoginForm = () => {
             
                 <h1> LOGIN </h1>
                 <div className='form'>
-                    <input autoComplete='on' id='email' type="email" placeholder='Email'/>
-                    <input autoComplete='on' id='password' type="password" placeholder='Enter Password'/>
+                    <input autoComplete='on' id='email' type="email" placeholder='Email' required/>
+                    <input autoComplete='on' id='password' type="password" placeholder='Enter Password' required/>
                 </div>
                 <div className="login-container">
                     <Button> LOGIN </Button>
