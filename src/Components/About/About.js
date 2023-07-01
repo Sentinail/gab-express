@@ -1,12 +1,57 @@
-import React from "react";
+import React, { useContext } from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { stylesContext } from "../../ContextProviders/StylesProvider";
 
 const StyledDiv = styled.div`
-  background-image: url(${(props) => props.img});
+  background-color: ${props => {return `rgb(${props.backgroundColor[0]}, ${props.backgroundColor[1]}, ${props.backgroundColor[2]}, ${props.backgroundColor[3]})`}};
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
   min-height: 100vh;
+
+  & .column1 {
+    animation: fadeIn 0.5s ease-in-out;
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(-50px);}
+        to { opacity: 1; transform: translateY(0px);}
+    }
+  }
+
+  & .about-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 100px;
+
+    & #quote {
+      padding: 40px;
+      font-size: 48px;
+    }
+  }
+
+  
+
+  & p {
+    color: white;
+    text-align: center;
+    font-size: 24px;
+    align-content: center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    max-width: 800px;
+  }
+
+  
+
+  & a {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: ${props => {return `rgb(${props.secondaryColor[0]}, ${props.secondaryColor[1]}, ${props.secondaryColor[2]}, ${props.secondaryColor[3]})`}};
+    padding: 40px;
+    font-size: 24px;
+  }
+        
 
   & .column1 {
   }
@@ -32,25 +77,18 @@ const StyledDiv = styled.div`
     margin-left: 50px;
     margin-right: 50px;
   }
-
-  & p {
-    color: white;
-    text-align: center;
-    font-size: 24px;
-    align-content: center;
-    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
-      sans-serif;
-  }
 `;
 
 function About() {
+  const styles = useContext(stylesContext)
+
   return (
-    <StyledDiv img={require("../../Assets/Images/Giving.jpg")}>
+    <StyledDiv img={require("../../Assets/Images/Giving.jpg")} backgroundColor={styles.primaryColor} secondaryColor={styles.secondaryColor}>
       <div className="column1">
         <div className="vision">VISION</div>
-        <p>
-          <div class="about-section">
-            <p>
+        <div>
+          <div className="about-section">
+            <p id="quote">
               "Creating a hunger-free world where no one goes to bed hungry."
             </p>
             <p>
@@ -60,38 +98,45 @@ function About() {
             </p>
             <ul>
               <li>
-                We are a team of passionate developers, designers, and marketers
-                who are dedicated to creating beautiful and user-friendly
-                websites. We believe that every website should be a reflection
-                of its owner's brand, and we take pride in creating websites
-                that are both functional and visually appealing.
+                <p>
+                  We are a team of passionate developers, designers, and marketers
+                  who are dedicated to creating beautiful and user-friendly
+                  websites. We believe that every website should be a reflection
+                  of its owner's brand, and we take pride in creating websites
+                  that are both functional and visually appealing.
+                </p>
               </li>
               <li>
-                We started our company in 2015 with the goal of helping
-                businesses of all sizes achieve their online goals. Since then,
-                we have helped hundreds of businesses create websites that have
-                helped them grow their businesses and reach their target
-                audiences.
+                <p>
+                  We started our company in 2015 with the goal of helping
+                  businesses of all sizes achieve their online goals. Since then,
+                  we have helped hundreds of businesses create websites that have
+                  helped them grow their businesses and reach their target
+                  audiences.
+                </p>
               </li>
               <li>
-                We are committed to providing our clients with the best possible
-                service. We offer a free consultation to help you determine your
-                needs, and we work closely with you throughout the entire
-                development process. We are also available to provide ongoing
-                support after your website is launched.
+                <p>
+                  We are committed to providing our clients with the best possible
+                  service. We offer a free consultation to help you determine your
+                  needs, and we work closely with you throughout the entire
+                  development process. We are also available to provide ongoing
+                  support after your website is launched.
+                </p>
               </li>
               <li>
-                We believe that a great website is more than just a collection
-                of pages. It is a powerful tool that can help you achieve your
-                business goals. If you are looking for a team of experienced and
-                dedicated developers to help you create a website that will help
-                you succeed, then we encourage you to contact us today.
-              </li>
+                <p>
+                  We believe that a great website is more than just a collection
+                  of pages. It is a powerful tool that can help you achieve your
+                  business goals. If you are looking for a team of experienced and
+                  dedicated developers to help you create a website that will help
+                  you succeed, then we encourage you to contact us today.
+                </p>
+              </li> 
             </ul>
-
-            <a href="https://www.yourcompany.com/contact">Contact Us</a>
+            <Link href="https://www.yourcompany.com/contact">Contact Us</Link>
           </div>
-        </p>
+        </div>
       </div>
     </StyledDiv>
   );

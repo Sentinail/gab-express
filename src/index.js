@@ -38,7 +38,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Route path="/topdonors" element={<TopDonors />} />
           <Route path="/about" element={<About />} />
         </Route>
-        <Route path="/test" element={<StylesProvider><GlobalStyleForTest /><TopDonorCell></TopDonorCell></StylesProvider>} />
+        <Route path="/test" element={<StylesProvider><GlobalStyleForTest /><App /></StylesProvider>} />
       </Routes>
     </BrowserRouter>
 );

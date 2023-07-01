@@ -1,92 +1,129 @@
-import React from 'react';
-import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import React from 'react'
+import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 
-const StyledDiv = styled.div`
-    background-image: url(${props => props.img});
-    background-repeat: no-repeat;
+const RegisterContainer = styled.div`
+    width: 100%;
+    height: calc(100vh - 80px);
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    padding: 50px;
+    justify-content: center;
+
+    background-image: url(${require("../../Assets/Images/Sign-in_Bg_2.jpg")});
     background-size: cover;
-    background-attachment: fixed; 
-    min-height: 100vh;
+`
 
-    & .register-form {
-        width: 380px;
-        height: 600px;
-        margin: 0 auto;
-        text-align: center;
-        float: right;    
-        background-color: #2F2E2E;
-        position: absolute;
-        top: 52.5%;
-        transform: translateY(-50%);
-        right: 50px;
-        border-radius: 10px;
-        align-items: center;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
+const RegisterFormStyle = styled.div`
+    min-height: 500px;
+    width: 400px;
+    background-color: #2F2E2E;
+    border-radius: 20px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+
+    animation: fadeIn 0.5s ease-in-out;
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(-50px);}
+        to { opacity: 1; transform: translateY(0px);}
     }
 
-    & .form-items {
-        width: 271px;
-        height: 455px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 15px;
-        margin: 0 auto;   
+    & * {
+        color: #FFFFFF;
+        letter-spacing: 1.75px;
     }
 
     & h1 {
-        margin-top: 0;
+        color: #FFFFFF;
+        font-size: 3rem;
+        margin: 20px;
+    }
+    
+    
+    & .form {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+
+        & input {
+            height: 50px;
+            text-align: center;
+            color: #2F2E2E;
+        }
+
+        & #user-name, #email, #password, #confirm-password {
+            grid-column-start: 1;
+            grid-column-end: 3;
+        }
     }
 
-    & input {
-        width: 271px;
-        height: 55px;
-        padding: 10px;
-        margin-bottom: 10px;
-        border: 1px solid #ccc;
-    }
+    & .login-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 50px;
 
-    & .register-button {
-        width: 141px;
-        height: 59px;
-        background-color: #4B8DC1;
-        color: white;    
-        border: none;
-        cursor: pointer;    
-        border-radius: 5px; 
-    }
+        & p {
+            margin: 25px;
+        }
 
-    a {
-        text-decoration: none;
-        color: #4B8DC1;
-    }
-
-    p {
-      color:white;
+        & a {
+            color: #4B8DC1;
+        }
     }
 `
 
-function Register () {
+const Button = styled.button`
+    min-width: 100px;
+
+    padding: 10px;
+    background-color: #4B8DC1;
+
+    border: none;
+    border-radius: 10px;
+
+    &:hover {
+        cursor: pointer;
+        scale: 1.1;
+    }
+`
+
+const RegisterForm = () => {
   return (
-    <StyledDiv img={require("../../Assets/Images/Sign-in_Bg_2.jpg")}>
-        <div className="register-form">
-      <div className="form-items">
-        <input type="email" placeholder="Email" required />
-        <input type="password" placeholder="Password" required />
-        <input type="password" placeholder="Confirm Password" required />
-        <button type="submit" className="register-button">REGISTER</button>
-        <p>Already registered?
-        <br></br>
-        <Link to={"/login"}> LOGIN </Link>
-        </p> 
-      </div>
-    </div>
-    </StyledDiv>
+    <form action="">
+        <RegisterFormStyle>
+            <h1>REGISTER</h1>
+            <div className='form'>
+                <input autoComplete='on' id='first-name' type="text" placeholder='First Name' />
+                <input autoComplete='on' id='last-name' type="text" placeholder='Last Name' />
+                <input autoComplete='on' id='user-name' type="text" placeholder='Username'/>
+                <input autoComplete='on' id='email' type="email" placeholder='Email'/>
+                <input autoComplete='on' id='password' type="password" placeholder='Enter Password'/>
+                <input autoComplete='on' id='confirm-password' type="password" placeholder='Confirm Password'/>
+            </div>
+            <div className="login-container">
+                <Button> REGISTER </Button>
+                <p> Already registered? </p>
+                <Link to="/login"> Login </Link>
+            </div>
+        </RegisterFormStyle>
+    </form>
   )
 }
 
-export default Register;
+
+
+function Register() {
+  return (
+    <RegisterContainer>
+        <RegisterForm></RegisterForm>
+    </RegisterContainer>
+  )
+}
+
+export default Register

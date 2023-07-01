@@ -1,72 +1,128 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 
-const StyledDiv = styled.div`
-    background-image: url(${props => props.img});
-    background-repeat: no-repeat;
+const LoginContainer = styled.div`
+    width: 100%;
+    height: calc(100vh - 80px);
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    padding: 50px;
+    justify-content: center;
+
+    background-image: url(${require("../../Assets/Images/Sign-in_Bg_2.jpg")});
     background-size: cover;
-    background-attachment: fixed; 
-    min-height: 100vh;
+`
 
-    & .login-form {
-        width: 380px;
-        height: 500px;
-        background-color: #2F2E2E;
-        text-align: center;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 15px;
-        float: right ;
-        position: absolute;
-        top: 52.5%;
-        transform: translateY(-50%);
-        right: 50px;
-        border-radius: 10px;
+const LoginFormStyle = styled.div`
+    min-height: 300px;
+    width: 400px;
+    background-color: #2F2E2E;
+    border-radius: 20px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+
+    animation: fadeIn 0.5s ease-in-out;
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(-50px);}
+        to { opacity: 1; transform: translateY(0px);}
+    }
+
+    & * {
+        color: #FFFFFF;
+        letter-spacing: 1.75px;
     }
 
     & h1 {
-        margin-top: 0;
+        font-size: 3rem;
+        margin: 20px;
+        
+    }
+    
+    
+    
+    & .form {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+
+        & input {
+            height: 50px;
+            text-align: center;
+            color: #2F2E2E;
+        }
+
+        & #user-name, #email, #password, #confirm-password {
+            grid-column-start: 1;
+            grid-column-end: 3;
+        }
     }
 
-    & input {
-        width: 75%;
-        padding: 10px;
-        margin-bottom: 10px;
-        border: 1px solid #ccc;
-    }
+    & .login-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 50px;
 
-    & .login-button {
-        background-color: #4B8DC1;
-        color:#ccc;
-        padding: 10px;
-        border: none;
-        cursor: pointer;
-    }
+        & p {
+            margin: 25px;
+        }
 
-    a {
-        text-decoration: none;
+        & a {
+            color: #4B8DC1;
+        }
     }
 `
 
+const Button = styled.button`
+    min-width: 100px;
 
-function Login () {
+    padding: 10px;
+    background-color: #4B8DC1;
+
+    border: none;
+    border-radius: 10px;
+
+    &:hover {
+        cursor: pointer;
+        scale: 1.1;
+    }
+`
+
+const LoginForm = () => {
   return (
-    <StyledDiv img={require("../../Assets/Images/Sign-in_Bg_2.jpg")}>
-        <div className="login-form">
-            <input type="email" placeholder="Email" required />
-            <input type="password" placeholder="Password" required />
-            <button type="login" className="login-button"><Link to={"/myaccount"}> LOGIN </Link></button>
-            <p>Not yet registered? 
-                <br>
-                </br>
-            <Link to={"/register"}> Register </Link>
-            </p>
-    </div>
-    </StyledDiv>
+    <form action="">
+        <LoginFormStyle>
+            
+                <h1> LOGIN </h1>
+                <div className='form'>
+                    <input autoComplete='on' id='email' type="email" placeholder='Email'/>
+                    <input autoComplete='on' id='password' type="password" placeholder='Enter Password'/>
+                </div>
+                <div className="login-container">
+                    <Button> LOGIN </Button>
+                    <p> Not yet registered? </p>
+                    <Link to="/register"> Register </Link>
+                </div>
+        
+        </LoginFormStyle>
+    </form>
   )
 }
 
-export default Login;
+
+
+function Login() {
+  return (
+    <LoginContainer>
+        <LoginForm></LoginForm>
+    </LoginContainer>
+  )
+}
+
+export default Login
