@@ -1,7 +1,9 @@
 import styled from "styled-components";
 
 export const SelectContainer = styled.div`
-    width: 500px;
+    width: 80%;
+    max-width: 500px;
+    min-width: 300px;
     height: auto;
     display: flex;
     justify-content: center;

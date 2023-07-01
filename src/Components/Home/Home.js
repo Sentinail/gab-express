@@ -14,7 +14,6 @@ const Section = (props) => {
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((el) => {
-        console.log(el)
         if (el.isIntersecting) {
           el.target.classList.add("slide");
           observer.unobserve(el.target);
@@ -33,7 +32,7 @@ const Section = (props) => {
     <SectionContainer flexDirection={id % 2 === 0 ? "row-reverse" : "row"} backgroundColor={id % 2 === 0 ? [255, 255, 255, 1] : styles.supportingColor}>
       <div ref={ref} className='items-container'>
         <img src={img} alt={id}></img>
-        <div>
+        <div className='content-container'>
           <h1> {title} </h1>
           <p> {paragraph} </p>
         </div>
@@ -46,7 +45,6 @@ function Home() {
   const navigate = useNavigate();
   const ref = useRef()
   const styles = useContext(stylesContext)
-  console.log(styles.secondaryColor)
 
   const moveVehicle = (el) => {
     el.classList.add("move")

@@ -7,11 +7,12 @@ import Login from './Components/Login/Login';
 import MyAccount from './Components/My_Account/MyAccount';
 import OrderForm from './Components/Order_Form/OrderForm';
 import Register from './Components/Register/Register';
-import TopDonors from './Components/Top_Donors/TopDonors';
+import TopDonors, { TopDonorCell } from './Components/Top_Donors/TopDonors';
 import About from './Components/About/About';
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import TestComponent from './Components/Test_Components/TestComponent';
+import StylesProvider from './ContextProviders/StylesProvider';
+import GlobalStyleForTest from './GlobalStylesTest';
 
 const ScrollToTop = () => {
   const location = useLocation();
@@ -37,7 +38,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Route path="/topdonors" element={<TopDonors />} />
           <Route path="/about" element={<About />} />
         </Route>
-        <Route path="/test" element={<TestComponent />} />
+        <Route path="/test" element={<StylesProvider><GlobalStyleForTest /><TopDonorCell></TopDonorCell></StylesProvider>} />
       </Routes>
     </BrowserRouter>
 );
