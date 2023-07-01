@@ -1,6 +1,10 @@
-import React from 'react'
+import React, {useState, useContext} from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
+import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
+import { authContext } from '../../ContextProviders/AuthProvider'
+
 
 const LoginContainer = styled.div`
     width: 100%;
@@ -107,24 +111,44 @@ const Button = styled.button`
 `
 
 const LoginForm = () => {
-  return (
-    <form action="">
-        <LoginFormStyle>
+    const { setIsAuth, setUserInfomation } = useContext(authContext)
+    const [email, setEmail] = useState()
+    const [password, setPassword] = useState()
+    const navigate = useNavigate()
+
+    const authenticateUser = (event) => {
+        event.preventDefault();
+        axios.post("http://localhost:5000/authentication", {
+            emailAddress: email,
+            password: password
+        }).then(res => {
+            alert(res.data.message)
+            setIsAuth(true)
+            setUserInfomation(res.data.userData)
+            res.data.authenticated ? navigate("/home") : navigate("/login")
+        })
+        .catch(err => {alert(err)})
+    }
+
+
+    return (
+        <form action="">
+            <LoginFormStyle>
+                
+                    <h1> LOGIN </h1>
+                    <div className='form'>
+                        <input onChange={event => {setEmail(event.target.value)}} autoComplete='on' id='email' type="email" placeholder='Email' required/>
+                        <input onChange={event => {setPassword(event.target.value)}} autoComplete='on' id='password' type="password" placeholder='Enter Password' required/>
+                    </div>
+                    <div className="login-container">
+                        <Button onClick={event => {authenticateUser(event)}}> LOGIN </Button>
+                        <p> Not yet registered? </p>
+                        <Link to="/register"> Register </Link>
+                    </div>
             
-                <h1> LOGIN </h1>
-                <div className='form'>
-                    <input autoComplete='on' id='email' type="email" placeholder='Email' required/>
-                    <input autoComplete='on' id='password' type="password" placeholder='Enter Password' required/>
-                </div>
-                <div className="login-container">
-                    <Button> LOGIN </Button>
-                    <p> Not yet registered? </p>
-                    <Link to="/register"> Register </Link>
-                </div>
-        
-        </LoginFormStyle>
-    </form>
-  )
+            </LoginFormStyle>
+        </form>
+    )
 }
 
 

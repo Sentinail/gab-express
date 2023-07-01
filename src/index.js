@@ -7,7 +7,7 @@ import Login from './Components/Login/Login';
 import MyAccount from './Components/My_Account/MyAccount';
 import OrderForm from './Components/Order_Form/OrderForm';
 import Register from './Components/Register/Register';
-import TopDonors, { TopDonorCell } from './Components/Top_Donors/TopDonors';
+import TopDonors from './Components/Top_Donors/TopDonors';
 import About from './Components/About/About';
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';

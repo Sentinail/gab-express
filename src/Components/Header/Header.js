@@ -6,12 +6,15 @@ import { Link, useNavigate } from 'react-router-dom'
 import Gear from './GearIcon/Gear'
 import SettingsItems from './SettingsItems/SettingsItems'
 import Burger from './Burger/Burger'
+import { authContext } from '../../ContextProviders/AuthProvider'
 
 function Header() {
     const goTo = useNavigate()
+    const { isAuth, userInformation } = useContext(authContext)
     const { primaryColor, secondaryColor } = useContext(stylesContext);
     const [settingsIsVisible, setSettingsIsVisible] = useState(false);
     const [isNavbarVisible, setIsNavbarVisible] = useState(false);
+    console.log(isAuth, userInformation)
 
     return (
         <>  
@@ -27,7 +30,7 @@ function Header() {
                 </NavBar>
                 <DonateLoginContainer>
                     <DonateButton backgroundColor={secondaryColor} onClick={() => {goTo("/orderform")}} > DONATE </DonateButton>
-                    <LoginButton onClick={() => {goTo("/login")}}> SIGN-IN </LoginButton>
+                    {isAuth ? <Link to={"/myaccount"}> My Account </Link>  : <LoginButton onClick={() => {goTo("/login")}}> SIGN-IN </LoginButton>} 
                     <div className='burger-wrapper' onClick={() => {setIsNavbarVisible(!isNavbarVisible)}}>
                         <Burger className="burger" size={0.3}></Burger>
                     </div>
