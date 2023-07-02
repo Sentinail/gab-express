@@ -1,12 +1,13 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import axios from "axios"
 import { useNavigate } from 'react-router-dom'
+import { stylesContext } from '../../ContextProviders/StylesProvider'
 
 const RegisterContainer = styled.div`
     width: 100%;
-    height: calc(100vh - 80px);
+    min-height: calc(100vh - 80px);
     display: flex;
     flex-direction: row-reverse;
     align-items: center;
@@ -14,13 +15,26 @@ const RegisterContainer = styled.div`
     background-image: url(${require("../../Assets/Images/Sign-in_Bg_2.jpg")});
     background-size: cover;
 
-    @media screen and (max-width: 450px) {
-        & form {
-            width: 100%;
-            height: 100%;
+    & form {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 
-            & div {
-                border-radius: 0px;
+    @media screen and (max-width: 450px) {
+        & {
+            background-image: none;
+            background-color: ${props => {return `rgb(${props.backgroundColor[0]}, ${props.backgroundColor[1]}, ${props.backgroundColor[2]}, ${props.backgroundColor[3]})`}};
+        }
+
+        & div {
+            width: 100%;
+            min-height: 100%;
+            border-radius: 0px;
+
+            & form {
                 width: 100%;
                 height: 100%;
             }
@@ -31,7 +45,7 @@ const RegisterContainer = styled.div`
 const RegisterFormStyle = styled.div`
     min-height: 500px;
     width: 400px;
-    background-color: #2F2E2E;
+    background-color: ${props => {return `rgb(${props.backgroundColor[0]}, ${props.backgroundColor[1]}, ${props.backgroundColor[2]}, ${props.backgroundColor[3]})`}};
     border-radius: 20px;
     padding: 30px;
     display: flex;
@@ -86,7 +100,7 @@ const RegisterFormStyle = styled.div`
         }
 
         & a {
-            color: #4B8DC1;
+            color: ${props => {return `rgb(${props.backgroundColor[0]}, ${props.backgroundColor[1]}, ${props.backgroundColor[2]}, ${props.backgroundColor[3]})`}};
         }
     }
 `
@@ -95,7 +109,7 @@ const Button = styled.button`
     min-width: 100px;
 
     padding: 10px;
-    background-color: #4B8DC1;
+    background-color: ${props => {return `rgb(${props.backgroundColor[0]}, ${props.backgroundColor[1]}, ${props.backgroundColor[2]}, ${props.backgroundColor[3]})`}};
 
     border: none;
     border-radius: 10px;
@@ -107,6 +121,7 @@ const Button = styled.button`
 `
 
 const RegisterForm = () => {
+    const styles = useContext(stylesContext)
     const navigate = useNavigate()
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
@@ -147,10 +162,9 @@ const RegisterForm = () => {
         }
     }
 
-
     return (
-        <form action="">
-            <RegisterFormStyle>
+        <RegisterFormStyle backgroundColor={styles.primaryColor}>
+            <form action="">
                 <h1>REGISTER</h1>
                 <div className='form'>
                     <input
@@ -203,23 +217,29 @@ const RegisterForm = () => {
                     />
                 </div>
                 <div className="login-container">
-                    <Button onClick={(event) => {registerUser(event)}}> REGISTER </Button>
+                    <Button onClick={(event) => {registerUser(event)}} backgroundColor={styles.secondaryColor}> REGISTER </Button>
                     <p> Already registered? </p>
-                    <Link to="/login"> Login </Link>
+                    <Link 
+                    style={{color: `rgb(${styles.secondaryColor[0]} ${styles.secondaryColor[1]} ${styles.secondaryColor[2]})`}} 
+                    to="/login"> 
+                    Login 
+                    </Link>
                 </div>
-            </RegisterFormStyle>
-        </form>
+            </form>
+        </RegisterFormStyle>
     )
 }
 
 
 
 function Register() {
-  return (
-    <RegisterContainer>
-        <RegisterForm></RegisterForm>
-    </RegisterContainer>
-  )
+    const styles = useContext(stylesContext)
+
+    return (
+        <RegisterContainer backgroundColor={styles.primaryColor}>
+            <RegisterForm></RegisterForm>
+        </RegisterContainer>
+    )
 }
 
 export default Register

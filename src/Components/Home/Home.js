@@ -64,9 +64,9 @@ function Home() {
           <InterestedToHelpSection>
             <h1>  INTERESTED TO HELP? </h1>
             <DonateNowButton backgroundColor={styles.secondaryColor} onMouseOver={() => {moveVehicle(ref.current)}} onClick={() => {navigate("/orderform")}}>
-               DODATE TODAY! 
+               DONATE TODAY! 
             </DonateNowButton>  
-            <img ref={ref} src={require("../../Assets/Images/icons8-delivery.gif")} alt='vehicle'></img>  
+            <img ref={ref} src={require("../../Assets/Images/icons8-delivery.gif")} alt='vehicle'></img>
           </InterestedToHelpSection>
         </div>
       </HomeContainer>

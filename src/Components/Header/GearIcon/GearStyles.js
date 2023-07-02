@@ -26,6 +26,7 @@ export const GearBody = styled.div`
     width: calc(50px * ${props => {return props.size}});
     height: calc(50px * ${props => {return props.size}});
     background-color: ${props => {return `rgb(${props.backgroundColor[0]}, ${props.backgroundColor[1]}, ${props.backgroundColor[2]}, ${props.backgroundColor[3]})`}};
+    background-color: rgb(0, 0, 0, 0.8);
     position: absolute; 
     top: 50%;
     left: 50%;
@@ -39,6 +40,7 @@ export const GearTeeth = styled.div`
     width: calc(15px * ${props => {return props.size}});
     height: calc(65px * ${props => {return props.size}});
     background-color: ${props => {return `rgb(${props.backgroundColor[0]}, ${props.backgroundColor[1]}, ${props.backgroundColor[2]}, ${props.backgroundColor[3]})`}};
+    background-color: rgb(0, 0, 0, 0.8);
     position: absolute;
     top: 50%;
     left: 50%;
@@ -50,6 +52,7 @@ export const GearHole = styled.div`
     width: calc(20px * ${props => {return props.size}});
     height: calc(20px * ${props => {return props.size}});
     background-color: ${props => {return `rgb(${props.secondaryColor[0]}, ${props.secondaryColor[1]}, ${props.secondaryColor[2]}, ${props.secondaryColor[3]})`}};
+    background-color: rgb(255, 255, 255, 1);
     position: absolute;
     border-radius: 100%;
     top: 50%;

@@ -11,6 +11,7 @@ const GlobalStyle = createGlobalStyle`
         margin: 0px;
         box-sizing: border-box;
         font-family: Agharti;
+        transition: background-color 0.8s ease-in-out;
     }
 
     body {

@@ -16,12 +16,12 @@ function Gear(props) {
     return (
         <div>
             <GearContainer ref={ref} size={size} settingsPosition={styles.settingsPosition} onClick={() => {rotateGear(ref)}}>
-                <GearBody size={size} backgroundColor={styles.primaryColor}>
-                    <GearTeeth size={size} degrees={180} backgroundColor={styles.primaryColor}></GearTeeth>
-                    <GearTeeth size={size} degrees={90} backgroundColor={styles.primaryColor}></GearTeeth>
-                    <GearTeeth size={size} degrees={45} backgroundColor={styles.primaryColor}></GearTeeth>
-                    <GearTeeth size={size} degrees={-45} backgroundColor={styles.primaryColor}></GearTeeth>
-                    <GearHole size={size} secondaryColor={styles.secondaryColor}></GearHole>
+                <GearBody size={size} backgroundColor={styles.secondaryColor}>
+                    <GearTeeth size={size} degrees={180} backgroundColor={styles.secondaryColor}></GearTeeth>
+                    <GearTeeth size={size} degrees={90} backgroundColor={styles.secondaryColor}></GearTeeth>
+                    <GearTeeth size={size} degrees={45} backgroundColor={styles.secondaryColor}></GearTeeth>
+                    <GearTeeth size={size} degrees={-45} backgroundColor={styles.secondaryColor}></GearTeeth>
+                    <GearHole size={size} secondaryColor={styles.primaryColor}></GearHole>
                 </GearBody>
             </GearContainer>
         </div>

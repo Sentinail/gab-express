@@ -4,11 +4,12 @@ import { Link } from 'react-router-dom'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import { authContext } from '../../ContextProviders/AuthProvider'
+import { stylesContext } from '../../ContextProviders/StylesProvider'
 
 
 const LoginContainer = styled.div`
     width: 100%;
-    height: calc(100vh - 80px);
+    min-height: calc(100vh - 80px);
     display: flex;
     flex-direction: row-reverse;
     align-items: center;
@@ -18,6 +19,11 @@ const LoginContainer = styled.div`
     background-size: cover;
 
     @media screen and (max-width: 450px) {
+        & {
+            background-image: none;
+            background-color: ${props => {return `rgb(${props.backgroundColor[0]}, ${props.backgroundColor[1]}, ${props.backgroundColor[2]}, ${props.backgroundColor[3]})`}};
+        }
+
         & form {
             width: 100%;
             height: 100%;
@@ -34,7 +40,7 @@ const LoginContainer = styled.div`
 const LoginFormStyle = styled.div`
     min-height: 300px;
     width: 400px;
-    background-color: #2F2E2E;
+    background-color: ${props => {return `rgb(${props.backgroundColor[0]}, ${props.backgroundColor[1]}, ${props.backgroundColor[2]}, ${props.backgroundColor[3]})`}};
     border-radius: 20px;
     padding: 30px;
     display: flex;
@@ -99,7 +105,7 @@ const Button = styled.button`
     min-width: 100px;
 
     padding: 10px;
-    background-color: #4B8DC1;
+    background-color: ${props => {return `rgb(${props.backgroundColor[0]}, ${props.backgroundColor[1]}, ${props.backgroundColor[2]}, ${props.backgroundColor[3]})`}};
 
     border: none;
     border-radius: 10px;
@@ -111,6 +117,7 @@ const Button = styled.button`
 `
 
 const LoginForm = () => {
+    const styles = useContext(stylesContext)
     const { setIsAuth, setUserInfomation } = useContext(authContext)
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -137,7 +144,7 @@ const LoginForm = () => {
 
     return (
         <form action="">
-            <LoginFormStyle>
+            <LoginFormStyle backgroundColor={styles.primaryColor}>
                 
                     <h1> LOGIN </h1>
                     <div className='form'>
@@ -145,9 +152,13 @@ const LoginForm = () => {
                         <input onChange={event => {setPassword(event.target.value)}} autoComplete='on' id='password' type="password" placeholder='Enter Password' required/>
                     </div>
                     <div className="login-container">
-                        <Button onClick={event => {authenticateUser(event)}}> LOGIN </Button>
+                        <Button backgroundColor={styles.secondaryColor} onClick={event => {authenticateUser(event)}}> LOGIN </Button>
                         <p> Not yet registered? </p>
-                        <Link to="/register"> Register </Link>
+                        <Link 
+                        style={{color: `rgb(${styles.secondaryColor[0]} ${styles.secondaryColor[1]} ${styles.secondaryColor[2]})`}}  
+                        to="/register"> 
+                        Register 
+                        </Link>
                     </div>
             
             </LoginFormStyle>
@@ -158,8 +169,10 @@ const LoginForm = () => {
 
 
 function Login() {
+    const styles = useContext(stylesContext)
+
   return (
-    <LoginContainer>
+    <LoginContainer backgroundColor={styles.primaryColor}>
         <LoginForm></LoginForm>
     </LoginContainer>
   )
