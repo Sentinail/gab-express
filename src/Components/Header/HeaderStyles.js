@@ -172,6 +172,21 @@ export const LoginButton = styled.button`
     }
 `
 
+export const MyAccountButton = styled.button`
+    min-width: 100px;
+
+    padding: 10px;
+    background-color: #FFFFFF;
+
+    border: none;
+    border-radius: 10px;
+
+    &:hover {
+        cursor: pointer;
+        scale: 1.1;
+    }
+`
+
 export const DonateButton = styled.button`
     min-width: 100px;
 

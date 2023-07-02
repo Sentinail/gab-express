@@ -112,22 +112,26 @@ const Button = styled.button`
 
 const LoginForm = () => {
     const { setIsAuth, setUserInfomation } = useContext(authContext)
-    const [email, setEmail] = useState()
-    const [password, setPassword] = useState()
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
     const navigate = useNavigate()
 
     const authenticateUser = (event) => {
         event.preventDefault();
-        axios.post("http://localhost:5000/authentication", {
+        if (email.length <= 0 || password.length <= 0) {
+            return
+        } else {
+            axios.post("http://localhost:5000/authentication", {
             emailAddress: email,
             password: password
         }).then(res => {
             alert(res.data.message)
-            setIsAuth(true)
+            res.data.authenticated ? setIsAuth(res.data.authenticated) : setIsAuth(res.data.authenticated)
             setUserInfomation(res.data.userData)
             res.data.authenticated ? navigate("/home") : navigate("/login")
         })
         .catch(err => {alert(err)})
+        }
     }
 
 
