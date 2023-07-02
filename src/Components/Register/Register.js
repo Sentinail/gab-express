@@ -114,6 +114,8 @@ const Button = styled.button`
     border: none;
     border-radius: 10px;
 
+    transition: all 0.2s ease;
+
     &:hover {
         cursor: pointer;
         scale: 1.1;

@@ -24,7 +24,7 @@ const Section = (props) => {
         }
         
       })
-    }, {threshold: 0.5});
+    }, {threshold: 0.2});
     observer.observe(ref.current)
   }, [])
 
@@ -54,7 +54,7 @@ function Home() {
     <>
       
       <HomeContainer>
-        <IntroductionContainer img={require("../../Assets/Images/Sign-in_Bg.jpg")}  >
+        <IntroductionContainer img={require("../../Assets/Images/Sign-in_Bg.jpg")}>
           <h1> GAB EXPRESS </h1>
           <h1> FEED HOPE, SHARE LOVE: BE A HUNGER HERO ON GAB EXPRESS </h1>
           <img src={logo} alt='logo'></img>
@@ -65,12 +65,11 @@ function Home() {
             <h1>  INTERESTED TO HELP? </h1>
             <DonateNowButton backgroundColor={styles.secondaryColor} onMouseOver={() => {moveVehicle(ref.current)}} onClick={() => {navigate("/orderform")}}>
                DONATE TODAY! 
-            </DonateNowButton>  
+            </DonateNowButton>
             <img ref={ref} src={require("../../Assets/Images/icons8-delivery.gif")} alt='vehicle'></img>
           </InterestedToHelpSection>
         </div>
       </HomeContainer>
-        
       <Footer></Footer>
     </>
   )

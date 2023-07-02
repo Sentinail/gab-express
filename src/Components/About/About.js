@@ -26,29 +26,19 @@ const StyledDiv = styled.div`
     align-items: center;
     margin-top: 100px;
 
-    & #quote {
+    & h1#quote {
       padding: 40px;
       font-size: 48px;
+      color: #FFFFFF;
+      text-align: center;
     }
   }
-
-  
-
-  & p {
-    color: white;
-    text-align: center;
-    font-size: 24px;
-    align-content: center;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    max-width: 800px;
-  }
-
-  
 
   & a {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     color: ${props => {return `rgb(${props.secondaryColor[0]}, ${props.secondaryColor[1]}, ${props.secondaryColor[2]}, ${props.secondaryColor[3]})`}};
     padding: 40px;
+    margin-top: 40px;
     font-size: 24px;
   }
         
@@ -70,12 +60,30 @@ const StyledDiv = styled.div`
     list-style-type: none;
     padding: 0;
     margin: 0;
+
+    & p {
+      color: white;
+      text-align: center;
+      font-size: 24px;
+      align-content: center;
+      font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+      max-width: 800px;
+    }
   }
 
   & ul li {
-    padding: 40px;
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-top: 80px;
     margin-left: 50px;
     margin-right: 50px;
+
+  @media screen and (max-width: 576px) {
+      & {
+        padding-left: 0px;
+        padding-right: 0px;
+      }
+    }
   }
 `;
 
@@ -88,15 +96,17 @@ function About() {
         <div className="vision">VISION</div>
         <div>
           <div className="about-section">
-            <p id="quote">
+            <h1 id="quote">
               "Creating a hunger-free world where no one goes to bed hungry."
-            </p>
-            <p>
-              Improves access to healthy food through establishing innovative
-              programming and partnerships to overcome barriers and strengthen
-              the community food system.
-            </p>
+            </h1>
             <ul>
+              <li>
+                <p>
+                  Improves access to healthy food through establishing innovative
+                  programming and partnerships to overcome barriers and strengthen
+                  the community food system.
+                </p>
+              </li>
               <li>
                 <p>
                   We are a team of passionate developers, designers, and marketers

@@ -29,7 +29,6 @@ export const SectionContainer = styled.div`
     & .items-container {
         width: 100%;
         min-width: 200px;
-        max-width: 350px;
         height: auto;
         display: flex;
         flex-direction: ${props => {return props.flexDirection}};
@@ -41,8 +40,8 @@ export const SectionContainer = styled.div`
         & img {
             display: block;
             width: 100%;
-            min-width: 350px;
-            max-width: 500px;
+            min-width: 300px;
+            max-width: 600px;
             border-radius: 20px;
             aspect-ratio: 3 / 2;
         }
@@ -59,7 +58,8 @@ export const SectionContainer = styled.div`
             }
             height: 100%;
             width: 100%;
-            min-width: 500px;   
+            min-width: 500px;
+            max-width: 500px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -82,6 +82,11 @@ export const SectionContainer = styled.div`
                 
             }
         }
+        @media screen and (max-width: 1000px) {
+            & {
+                flex-direction: column
+            }
+        }
     }
 
     & .items-container.animated-slide {
@@ -92,12 +97,6 @@ export const SectionContainer = styled.div`
     & .items-container.animated-slide.slide {
         top: 0px;
         opacity: 1;
-    }
-
-    @media screen and (max-width: 1000px) {
-        & .items-container{
-            flex-direction: column
-        }
     }
 `
 
