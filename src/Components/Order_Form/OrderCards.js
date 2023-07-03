@@ -1,31 +1,41 @@
 import React, { useContext, useState, useRef } from 'react'
 import { OrderCardContainer} from './OrderCardsStyles'
 import { stylesContext } from '../../ContextProviders/StylesProvider'
+import { authContext } from '../../ContextProviders/AuthProvider'
 import axios from "axios"
+import { useNavigate } from 'react-router-dom'
 
 function OrderCards(props) {
     const {id, img, price} = props
     const styles = useContext(stylesContext)
+    const { isAuth } = useContext(authContext)
     const [quantity, setQuantity] = useState(0);
     const ref = useRef()
+    const navigate = useNavigate()
 
 
     const makePayment = (id, quantity) => {
-        if (quantity > 0) {
-            axios.post("http://localhost:5000/create-checkout-session", {
-            item: {
-                id: id,
-                quantity: quantity
+        if ( isAuth ) {
+            if (quantity > 0) {
+                axios.post("http://localhost:5000/create-checkout-session", {
+                item: {
+                    id: id,
+                    quantity: quantity
+                }
+                }).then(res => {
+                    window.location.href = res.data.url
+                }).catch(err => {
+                    console.log(id, `${price}$`)
+                    alert(err)
+                })
+            } else {
+                alert("Invalid Quantity")
             }
-            }).then(res => {
-                window.location.href = res.data.url
-            }).catch(err => {
-                console.log(id, `${price}$`)
-                alert(err)
-            })
         } else {
-            alert("Invalid Quantity")
+            alert("Please Login First")
+            navigate("/login")
         }
+        
     }
 
     return (

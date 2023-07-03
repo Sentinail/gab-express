@@ -4,9 +4,10 @@ import { stylesContext } from '../../ContextProviders/StylesProvider'
 
 const OptionsComponent = (props) => {
     const {id, data, setValue} = props
+    const styles = useContext(stylesContext)
 
     return (
-        <OptionsData key={id} onClick={() => {setValue(data)}}>
+        <OptionsData backgroundColor={styles.secondaryColor} key={id} onClick={() => {setValue(data)}}>
             <p> {data} </p>
         </OptionsData>
     )
@@ -29,7 +30,7 @@ function Select() {
                 <div className='content'>
                     <p> {value} </p>
                 </div>
-                <Options isVisible={isVisible}>
+                <Options backgroundColor={styles.primaryColor} isVisible={isVisible}>
                     {data.map(data => {return <OptionsComponent data={data} id={data} key={data} setValue={setValue}></OptionsComponent>})}
                 </Options> 
             </SelectContainer>

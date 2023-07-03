@@ -64,7 +64,7 @@ export const Options = styled.div`
     width: 100%;
     height: ${props => {return props.isVisible ? 500 : 0}}px;
     opacity: ${props => {return props.isVisible ? 1 : 0}};
-    background-color: rgba(47, 46, 46, 1);
+    background-color: ${props => {return `rgb(${props.backgroundColor[0]}, ${props.backgroundColor[1]}, ${props.backgroundColor[2]}, ${props.backgroundColor[3]})`}};
     transition: all 1s;
     z-index: 1;
     overflow-y: scroll;
@@ -78,7 +78,7 @@ export const OptionsData = styled.div`
     justify-content: center;
     
     &:hover {
-        background-color: rgba(75, 141, 193, 1);
+        background-color: ${props => {return `rgb(${props.backgroundColor[0]}, ${props.backgroundColor[1]}, ${props.backgroundColor[2]}, ${props.backgroundColor[3]})`}};
     }
 
     z-index: 1;
