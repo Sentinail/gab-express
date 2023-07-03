@@ -36,10 +36,10 @@ function Header() {
                     </div>
                 </DonateLoginContainer>
                 <div className='responsive-navbar'>
-                    <Link to={"/topdonors"}> TOP DONORS </Link>
-                    <Link to={"/about"}> ABOUT </Link>
-                    <Link to={"/home"}> HOME </Link>
-                    <Link to={"/register"}> SIGN UP </Link>
+                    <Link onClick={() => setIsNavbarVisible(false)} to={"/topdonors"}> TOP DONORS </Link>
+                    <Link onClick={() => setIsNavbarVisible(false)} to={"/about"}> ABOUT </Link>
+                    <Link onClick={() => setIsNavbarVisible(false)} to={"/home"}> HOME </Link>
+                    <Link onClick={() => setIsNavbarVisible(false)} to={"/register"}> SIGN UP </Link>
                 </div>
             </Container>
             <Gear size={0.5} settingsIsVisible={settingsIsVisible} setSettingsIsVisible={setSettingsIsVisible}></Gear>

@@ -126,6 +126,7 @@ const LoginForm = () => {
     const authenticateUser = (event) => {
         event.preventDefault();
         if (email.length <= 0 || password.length <= 0) {
+            alert("Invalid Login")
             return
         } else {
             axios.post("http://localhost:5000/authentication", {

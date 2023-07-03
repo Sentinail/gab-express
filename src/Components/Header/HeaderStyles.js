@@ -145,7 +145,7 @@ export const NavBar = styled.div`
 
 export const DonateLoginContainer = styled.div`
     width: 350px;
-    max-width: 300px;
+    min-width: 300px;
 
     display: flex;
     justify-content: space-evenly;
