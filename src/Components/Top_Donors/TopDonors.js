@@ -37,11 +37,6 @@ function TopDonors() {
       .catch(error => console.log(error));
   }, [])
 
-  console.log(data)
-
- 
-
-
   return (
     <TopDonorsContainer backgroundColor={styles.supportingColor}>
       <div className='board'>

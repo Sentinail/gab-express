@@ -134,8 +134,16 @@ const LoginForm = () => {
             password: password
         }).then(res => {
             alert(res.data.message)
-            res.data.authenticated ? setIsAuth(res.data.authenticated) : setIsAuth(res.data.authenticated)
-            setUserInfomation(res.data.userData)
+
+            if (res.data.authenticated) {
+                setIsAuth(res.data.authenticated)
+                localStorage.setItem("email", email)
+                localStorage.setItem("password", password)
+                setUserInfomation(res.data.userData)
+            } else {
+                setIsAuth(false)
+            }
+            
             res.data.authenticated ? navigate("/home") : navigate("/login")
         })
         .catch(err => {alert(err)})

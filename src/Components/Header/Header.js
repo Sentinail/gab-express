@@ -14,7 +14,6 @@ function Header() {
     const { primaryColor, secondaryColor } = useContext(stylesContext);
     const [settingsIsVisible, setSettingsIsVisible] = useState(false);
     const [isNavbarVisible, setIsNavbarVisible] = useState(false);
-    console.log(isAuth)
 
     return (
         <>  

@@ -2,12 +2,13 @@ import styled from "styled-components";
 
 export const SettingsItemContainer = styled.div`
     width: 200px;
-    height: 300px;
+    min-height: 300px;  
     background-color: ${props => {return `rgb(${props.backgroundColor[0]}, ${props.backgroundColor[1]}, ${props.backgroundColor[2]}, ${props.backgroundColor[3]})`}};
     background-color: rgb(0, 0, 0, 0.8);
     position: fixed;
-    bottom: -300px;
+    top: 100%;
     left: 100px;
+    transform: translateY(0%);
     transition: all 2s;
     border-radius: 20px;
     display: flex;
@@ -35,7 +36,7 @@ export const SettingsItemContainer = styled.div`
     }
 
     &.isVisible {
-        bottom: 0px;
+        transform: translateY(-100%);
     }
 
     z-index: 100;

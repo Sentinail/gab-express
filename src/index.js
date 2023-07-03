@@ -13,6 +13,7 @@ import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import StylesProvider from './ContextProviders/StylesProvider';
 import GlobalStyleForTest from './GlobalStylesTest';
+import AuthProvider from './ContextProviders/AuthProvider';
 
 const ScrollToTop = () => {
   const location = useLocation();
@@ -28,7 +29,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <BrowserRouter>
       <ScrollToTop />
       <Routes>
-        <Route path="/" element={<App />}>
+        <Route path="/" element={<StylesProvider><AuthProvider><App /></AuthProvider></StylesProvider>}>
           <Route path="/" element={<Navigate to="/home" />} />
           <Route path="/home" element={<Home />} />
           <Route path="/login" element={<Login />} />

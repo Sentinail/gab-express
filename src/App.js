@@ -1,23 +1,36 @@
-import React from 'react'
+import React, {useEffect, useContext} from 'react'
 import { Outlet } from 'react-router-dom'
 import GlobalStyle from './GlobalStyle'
-import StylesProvider from './ContextProviders/StylesProvider'
 import Header from './Components/Header/Header';
-import AuthProvider from './ContextProviders/AuthProvider';
+import axios from 'axios';
+import { authContext } from './ContextProviders/AuthProvider';
 
 function App() {
+  const { setIsAuth, setUserInfomation } = useContext(authContext)
+
+  useEffect(() => {
+    if (localStorage.getItem("email") && localStorage.getItem("password")) {
+      const email = localStorage.getItem("email")
+      const password = localStorage.getItem("password")
+
+      axios.post("http://localhost:5000/authentication", {
+        emailAddress: email,
+        password: password
+      }).then(res => {
+        res.data.authenticated ? setIsAuth(res.data.authenticated) : setIsAuth(res.data.authenticated)
+        setUserInfomation(res.data.userData)
+      })
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
     <>
-    <AuthProvider>
-      <StylesProvider>
-        <GlobalStyle></GlobalStyle>
-        <Header></Header>
-        <main>
-          <Outlet></Outlet>
-        </main>
-      </StylesProvider>
-    </AuthProvider>
+      <GlobalStyle></GlobalStyle>
+      <Header></Header>
+      <main>
+        <Outlet></Outlet>
+      </main>
     </>
   );
 }
