@@ -19,6 +19,9 @@ function App() {
       }).then(res => {
         res.data.authenticated ? setIsAuth(res.data.authenticated) : setIsAuth(res.data.authenticated)
         setUserInfomation(res.data.userData)
+      }).catch(err => {
+        setIsAuth(false);
+        console.log(err)
       })
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps

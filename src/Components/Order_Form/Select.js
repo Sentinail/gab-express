@@ -3,17 +3,19 @@ import { SelectContainer, Options, OptionsData } from './SelectStyles'
 import { stylesContext } from '../../ContextProviders/StylesProvider'
 
 const OptionsComponent = (props) => {
+    const { setPlaceToDonate } = props
     const {id, data, setValue} = props
     const styles = useContext(stylesContext)
 
     return (
-        <OptionsData backgroundColor={styles.secondaryColor} key={id} onClick={() => {setValue(data)}}>
+        <OptionsData backgroundColor={styles.secondaryColor} key={id} onClick={() => {setValue(data); setPlaceToDonate(data)}}>
             <p> {data} </p>
         </OptionsData>
     )
 }
 
-function Select() {
+function Select(props) {
+    const {setPlaceToDonate} = props
     const [isVisible, setIsVisible] = useState(false)
     const [value, setValue] = useState("Choose Where To Donate")
     const styles = useContext(stylesContext)
@@ -31,7 +33,7 @@ function Select() {
                     <p> {value} </p>
                 </div>
                 <Options backgroundColor={styles.primaryColor} isVisible={isVisible}>
-                    {data.map(data => {return <OptionsComponent data={data} id={data} key={data} setValue={setValue}></OptionsComponent>})}
+                    {data.map(data => {return <OptionsComponent setPlaceToDonate={setPlaceToDonate} data={data} id={data} key={data} setValue={setValue}></OptionsComponent>})}
                 </Options> 
             </SelectContainer>
             
