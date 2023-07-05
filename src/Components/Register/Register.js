@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import axios from "axios"
 import { useNavigate } from 'react-router-dom'
 import { stylesContext } from '../../ContextProviders/StylesProvider'
+import RegisterFormTest from '../Test_Components/RegisterFormTest'
 
 const RegisterContainer = styled.div`
     width: 100%;
@@ -239,7 +240,7 @@ function Register() {
 
     return (
         <RegisterContainer backgroundColor={styles.primaryColor}>
-            <RegisterForm></RegisterForm>
+            <RegisterFormTest></RegisterFormTest>
         </RegisterContainer>
     )
 }

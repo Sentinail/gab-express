@@ -2,6 +2,8 @@ import React, { useContext, useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import { stylesContext } from '../../ContextProviders/StylesProvider'
+import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 
 const RegisterFormStyle = styled.div`
     min-height: 500px;
@@ -47,8 +49,8 @@ const RegisterFormStyle = styled.div`
                 width: 100%;
                 top: 100%;
                 left: 0px;
-                font-size: 0.7rem;
-                color: rgb(75, 141, 193, 1)
+                font-size: 0.9rem;
+                color: ${props => {return `rgb(${props.secondaryColor[0]}, ${props.secondaryColor[1]}, ${props.secondaryColor[2]}, ${props.secondaryColor[3]})`}};
             }
         }
 
@@ -79,6 +81,12 @@ const RegisterFormStyle = styled.div`
 
         & a {
             color: ${props => {return `rgb(${props.backgroundColor[0]}, ${props.backgroundColor[1]}, ${props.backgroundColor[2]}, ${props.backgroundColor[3]})`}};
+        }
+    }
+
+    @media screen and (max-width: 450px) {
+        & {
+            min-width: 0px;
         }
     }
 `
@@ -118,11 +126,36 @@ const RegisterForm = () => {
     const [passwordIsValid, setPasswordIsValid] = useState(false);
     const [confirmPasswordIsValid, setConfirmPasswordIsValid] = useState(false);
 
-    const buttonIsActive = !(firstNameIsValid && lastNameIsValid && userNameIsValid && emailIsValid && passwordIsValid && confirmPasswordIsValid)
+    const navigate = useNavigate()
 
     const styles = useContext(stylesContext)
 
-    
+    let buttonIsActive = (firstNameIsValid && lastNameIsValid && userNameIsValid && emailIsValid && passwordIsValid && confirmPasswordIsValid)
+
+    const register = (event) => {
+        event.preventDefault()
+        if (buttonIsActive) {
+            const date = new Date()
+            let day = date.getDate()
+            let month = date.getMonth() + 1
+            let year = date.getFullYear()
+            let fullDate = `${month}-${day}-${year}`
+
+            axios.post("http://localhost:5000/users", {
+                fullName: `${firstName} ${lastName}`,
+                userName: userName,
+                emailAddress: email,
+                password: password,
+                memberSince: fullDate,
+                totalDonation: 0
+            }).then(res => {
+                alert(res.data.message)
+                res.data.authenticated ? navigate("/login") : navigate("/register")
+            }).catch(err => {
+                alert(err)
+            })
+        }
+    }
 
     useEffect(() => {
         firstName.length > 0 ? setFirstNameIsValid(true) : setFirstNameIsValid(false)
@@ -137,7 +170,7 @@ const RegisterForm = () => {
     }, [firstName, lastName, userName, email, password, confirmPassword])
 
     return (
-        <RegisterFormStyle backgroundColor={styles.primaryColor}>
+        <RegisterFormStyle backgroundColor={styles.primaryColor} secondaryColor={styles.secondaryColor}>
             <form action="">
                 <h1>REGISTER</h1>
                 <div className='form'>
@@ -202,10 +235,10 @@ const RegisterForm = () => {
                         <p hidden={confirmPasswordIsValid || confirmPassword.length <= 0}> Confirm password doesn't match </p>
                         <p hidden={(passwordIsValid || confirmPassword.length > 0 || password.length > 0) || confirmPassword.length <= 0}> Confirm password requires 8 characters </p>
                     </div>
-                </div>
+                </div>  
                 <div className="login-container">
-                    <Button isActive={buttonIsActive}  onClick={() => {console.log("Registered")}} backgroundColor={styles.secondaryColor} 
-                    disabled={buttonIsActive}> 
+                    <Button isActive={!buttonIsActive}  onClick={(event) => {register(event)}} backgroundColor={styles.secondaryColor} 
+                    disabled={!buttonIsActive}> 
                     REGISTER 
                     </Button>
                     <p> Already registered? </p>
