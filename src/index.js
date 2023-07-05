@@ -14,6 +14,7 @@ import { useLocation } from 'react-router-dom';
 import StylesProvider from './ContextProviders/StylesProvider';
 import GlobalStyleForTest from './GlobalStylesTest';
 import AuthProvider from './ContextProviders/AuthProvider';
+import RegisterFormTest from './Components/Test_Components/RegisterFormTest';
 
 const ScrollToTop = () => {
   const location = useLocation();
@@ -39,7 +40,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Route path="/topdonors" element={<TopDonors />} />
           <Route path="/about" element={<About />} />
         </Route>
-        <Route path="/test" element={<StylesProvider><GlobalStyleForTest /><App /></StylesProvider>} />
+        <Route path="/test" element={<StylesProvider><GlobalStyleForTest /><RegisterFormTest></RegisterFormTest></StylesProvider>} />
       </Routes>
     </BrowserRouter>
 );
