@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import React, {useState} from 'react'
+
 
 const BurgerContainer = styled.div`
     width: ${({size}) => {return 100 * size}}px;
@@ -37,10 +37,10 @@ const BurgerContainer = styled.div`
 `   
 
 function Burger(props) {
-    const { size, className, isActive } = props;
+  const { size, className, isActive } = props;
 
-    return (
-      <BurgerContainer className={className} size={size} isActive={isActive} onClick={() => { }}>
+  return (
+    <BurgerContainer className={className} size={size} isActive={isActive}>
             <div className="line"></div>
             <div className="line"></div>
             <div className="line"></div>
