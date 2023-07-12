@@ -31,7 +31,7 @@ function Header() {
                     <DonateButton backgroundColor={secondaryColor} onClick={() => {goTo("/orderform")}} > DONATE </DonateButton>
                     {isAuth ? <MyAccountButton onClick={() => {goTo("/myaccount")}}> MY ACCOUNT </MyAccountButton> : <LoginButton onClick={() => {goTo("/login")}}> SIGN-IN </LoginButton>} 
                     <div className='burger-wrapper' onClick={() => {setIsNavbarVisible(!isNavbarVisible)}}>
-                        <Burger className="burger" size={0.3}></Burger>
+                        <Burger className="burger" size={0.3} isActive={isNavbarVisible}></Burger>
                     </div>
                 </DonateLoginContainer>
                 <div className='responsive-navbar'>

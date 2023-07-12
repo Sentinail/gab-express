@@ -37,12 +37,10 @@ const BurgerContainer = styled.div`
 `   
 
 function Burger(props) {
-    const { size, className } = props
-    const [ isActive, setIsActive ] = useState(false)
-
+    const { size, className, isActive } = props;
 
     return (
-        <BurgerContainer className={className} size={size} isActive={isActive} onClick={() => {setIsActive(!isActive)}}>
+      <BurgerContainer className={className} size={size} isActive={isActive} onClick={() => { }}>
             <div className="line"></div>
             <div className="line"></div>
             <div className="line"></div>
