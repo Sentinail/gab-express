@@ -9,16 +9,19 @@ import Burger from './Burger/Burger'
 import { authContext } from '../../ContextProviders/AuthProvider'
 
 function Header() {
-    const goTo = useNavigate()
-    const { isAuth } = useContext(authContext)
+    const goTo = useNavigate();
+    const { isAuth } = useContext(authContext);
     const { primaryColor, secondaryColor } = useContext(stylesContext);
     const [settingsIsVisible, setSettingsIsVisible] = useState(false);
     const [isNavbarVisible, setIsNavbarVisible] = useState(false);
 
+    const handleBurgerClick = () => {
+        setIsNavbarVisible(!isNavbarVisible);
+    };
+
     return (
         <>  
-            <HeaderContainerShadow className='lolz'>
-            </HeaderContainerShadow>
+            <HeaderContainerShadow className='lolz'></HeaderContainerShadow>
             <Container backgroundColor={primaryColor} secondaryColor={secondaryColor} isNavbarVisible={isNavbarVisible}>
                 <img src={logo} alt='logo' onClick={() => {goTo("/home")}}></img>
                 <NavBar flexDirection="row">
@@ -30,8 +33,8 @@ function Header() {
                 <DonateLoginContainer>
                     <DonateButton backgroundColor={secondaryColor} onClick={() => {goTo("/orderform")}} > DONATE </DonateButton>
                     {isAuth ? <MyAccountButton onClick={() => {goTo("/myaccount")}}> MY ACCOUNT </MyAccountButton> : <LoginButton onClick={() => {goTo("/login")}}> SIGN-IN </LoginButton>} 
-                    <div className='burger-wrapper' onClick={() => {setIsNavbarVisible(!isNavbarVisible)}}>
-                        <Burger className="burger" size={0.3} isActive={isNavbarVisible}></Burger>
+                    <div className='burger-wrapper'>
+                        <Burger className="burger" onClick={handleBurgerClick} size={0.3} isActive={isNavbarVisible} ></Burger>
                     </div>
                 </DonateLoginContainer>
                 <div className='responsive-navbar'>
@@ -47,4 +50,4 @@ function Header() {
     )
 }
 
-export default Header
+export default Header;
