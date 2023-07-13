@@ -97,7 +97,7 @@ function About() {
         <div>
           <div className="about-section">
             <h1 id="quote">
-              "Creating a hunger-free world where no one goes to bed hungry."
+              "CREATING A HUNGER-FREE WORLD WHERE NO ONE GOES TO BED HUNGRY."
             </h1>
             <ul>
               <li>
