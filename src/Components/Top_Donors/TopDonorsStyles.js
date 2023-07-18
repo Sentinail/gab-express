@@ -59,6 +59,8 @@ export const TopDonorCellStyle = styled.div`
     color: #FFFFFF;
     position: relative;
 
+    transition: all 0.2s ease-in-out;
+
     & .name {
         position: absolute;
         top: 50%;
@@ -80,5 +82,10 @@ export const TopDonorCellStyle = styled.div`
         transform: translateY(-50%);
         right: 30px;
 
+    }
+
+    &:hover {
+        transform: scale(1.05);
+        cursor: pointer;
     }
 `

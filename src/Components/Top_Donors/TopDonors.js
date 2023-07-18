@@ -2,12 +2,14 @@ import React, { useContext, useState, useEffect } from 'react'
 import { TopDonorsContainer, TopDonorCellStyle } from './TopDonorsStyles'
 import { stylesContext } from '../../ContextProviders/StylesProvider'
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 
 export const TopDonorCell = (props) => {
-  const {name, totalDonation, rankNum, backgroundColor} = props
+  const {name, totalDonation, rankNum, backgroundColor, user_id} = props
+  const navigate = useNavigate()
 
   return (
-    <TopDonorCellStyle backgroundColor={backgroundColor}>
+    <TopDonorCellStyle backgroundColor={backgroundColor} onClick={() => {navigate(`/user/${user_id}`)}}>
       <p className='name'>{name}</p>
       <p className='total-donation'>${totalDonation}</p>
       <p className='rank-num'>#{rankNum}</p>
@@ -19,20 +21,14 @@ function TopDonors() {
   const styles = useContext(stylesContext)
   const [data, setData] = useState()
 
-  const getUsersSorted = async () => {
-    try {
-      const response = await axios.get("http://localhost:5000/users")
-      const users = response.data
-      users.sort((a, b) => b.totalDonation - a.totalDonation);
-      return users;
-    } catch (error) {
-      console.log(error);
-      throw error;
-    }
+
+  const getUsers = async () => {
+    const users = await axios.get("http://localhost:9000/users")
+    return users.data
   }
 
   useEffect(() => {
-    getUsersSorted()
+    getUsers()
       .then(res => setData(res))
       .catch(error => console.log(error));
   }, [])
@@ -44,10 +40,11 @@ function TopDonors() {
         <div className='cells'>
           {data ? data.map((user, index) => {return <TopDonorCell 
           key={index} 
-          name={user.fullName} 
-          totalDonation={user.totalDonation} 
+          name={user.user_name} 
+          totalDonation={user.total_donation} 
           rankNum={index + 1} 
-          backgroundColor={(index + 1) % 2 === 0 ? styles.primaryColor : styles.secondaryColor}></TopDonorCell>}) : "False"}
+          backgroundColor={(index + 1) % 2 === 0 ? styles.primaryColor : styles.secondaryColor}
+          user_id={user.user_id}></TopDonorCell>}) : "False"}
         </div>
       </div>
     </TopDonorsContainer>

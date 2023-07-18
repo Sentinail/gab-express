@@ -135,22 +135,15 @@ const RegisterForm = () => {
     const register = (event) => {
         event.preventDefault()
         if (buttonIsActive) {
-            const date = new Date()
-            let day = date.getDate()
-            let month = date.getMonth() + 1
-            let year = date.getFullYear()
-            let fullDate = `${month}-${day}-${year}`
-
-            axios.post("http://localhost:5000/users", {
-                fullName: `${firstName} ${lastName}`,
-                userName: userName,
-                emailAddress: email,
+            axios.post("http://localhost:9000/users", {
+                first_name: firstName,
+                lastName: lastName,
+                user_name: userName,
+                email_address: email,
                 password: password,
-                memberSince: fullDate,
-                totalDonation: 0
             }).then(res => {
                 alert(res.data.message)
-                res.data.authenticated ? navigate("/login") : navigate("/register")
+                res.data.created ? navigate("/login") : navigate("/register")
             }).catch(err => {
                 alert(err)
             })
