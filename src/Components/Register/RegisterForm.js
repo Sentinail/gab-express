@@ -111,7 +111,7 @@ const Button = styled.button`
     }
 `
 
-const RegisterForm = () => {
+const RegisterForm = () => {    
     const [firstName, setFirstName] = useState("")
     const [lastName, setLastName] = useState("")
     const [userName, setUserName] = useState("")
@@ -137,7 +137,7 @@ const RegisterForm = () => {
         if (buttonIsActive) {
             axios.post("http://localhost:9000/users", {
                 first_name: firstName,
-                lastName: lastName,
+                last_name: lastName,
                 user_name: userName,
                 email_address: email,
                 password: password,

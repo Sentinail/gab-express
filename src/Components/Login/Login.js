@@ -129,22 +129,19 @@ const LoginForm = () => {
             alert("Invalid Login")
             return
         } else {
-            axios.post("http://localhost:5000/authentication", {
-            emailAddress: email,
+            axios.post("http://localhost:9000/users/login", {
+            email_address: email,
             password: password
-        }).then(res => {
+        }, { withCredentials: true }).then(res => {
             alert(res.data.message)
 
-            if (res.data.authenticated) {
-                setIsAuth(res.data.authenticated)
-                localStorage.setItem("email", email)
-                localStorage.setItem("password", password)
-                setUserInfomation(res.data.userData)
+            if (res.data.login) {
+                setIsAuth(res.data.login)
+                setUserInfomation(res.data.user_data)
             } else {
                 setIsAuth(false)
             }
-            
-            res.data.authenticated ? navigate("/home") : navigate("/login")
+            res.data.login ? navigate("/home") : navigate("/login")
         })
         .catch(err => {alert(err)})
         }

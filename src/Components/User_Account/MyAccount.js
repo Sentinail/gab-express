@@ -21,29 +21,29 @@ function MyAccount() {
           <div className='left'>
             <img src={require("../../Assets/Images/Di_ko_na_alam_pinaggagagawa_ko2.png")} alt="" />
             <div className="member-since info-container">
-              <p className='user-info'> {userInformation.memberSince} </p>
+              <p className='user-info'> {userInformation.member_since} </p>
             </div>
             <div className="total-donation info-container">
-              <p className='user-info'> {userInformation.totalDonation}$ </p>
+              <p className='user-info'> {userInformation.total_donation}$ </p>
             </div>
           </div>
           <div className='middle'>
             <div className="container">
               <p> FULL NAME </p>
               <div className="full-name info-container">
-                <p className='user-info'> {userInformation.fullName} </p>
+                <p className='user-info'> {userInformation.first_name} {userInformation.last_name} </p>
               </div>
             </div>
             <div className="container">
               <p>USERNAME</p>
               <div className="username info-container">
-                <p className='user-info'> {userInformation.userName} </p>
+                <p className='user-info'> {userInformation.user_name} </p>
               </div>
             </div>
             <div className="container ">
               <p>EMAIL ADDRESS</p>
               <div className="email-address info-container">
-                <p className='user-info'> {userInformation.emailAddress} </p>
+                <p className='user-info'> {userInformation.email_address} </p>
               </div>
             </div>
             <div className="container">
@@ -57,13 +57,7 @@ function MyAccount() {
             <div className='container about-me info-container'>
               <h1> ABOUT ME </h1>
               <p className='user-info'> 
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi 
-                ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit 
-                in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur 
-                sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit 
-                anim id est laborum.
+                {userInformation.about_user}
               </p>
             </div>
           </div>
