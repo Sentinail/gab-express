@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const FooterContainer = styled.div`
     width: 100%;
-    min-height: 500px;
+    min-height: 200px;
     background-color: ${props => {return `rgb(${props.backgroundColor[0]}, ${props.backgroundColor[1]}, ${props.backgroundColor[2]}, ${props.backgroundColor[3]})`}};
 
     display: flex;
@@ -19,7 +19,8 @@ export const FooterHeader = styled.div`
 export const FooterBody = styled.div`
     width: 100%;
     height: 100%;
-
+    padding-top: 20px;
+    padding-bottom: 20px;
     background-color: ${props => {return `rgb(${props.backgroundColor[0]}, ${props.backgroundColor[1]}, ${props.backgroundColor[2]}, ${props.backgroundColor[3]})`}};
     display: flex;
 `
