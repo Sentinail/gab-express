@@ -7,6 +7,7 @@ import Gear from './GearIcon/Gear'
 import SettingsItems from './SettingsItems/SettingsItems'
 import Burger from './Burger/Burger'
 import { authContext } from '../../ContextProviders/AuthProvider'
+import { useLocation } from 'react-router-dom'
 
 function Header() {
     const goTo = useNavigate();
@@ -14,6 +15,7 @@ function Header() {
     const { primaryColor, secondaryColor } = useContext(stylesContext);
     const [settingsIsVisible, setSettingsIsVisible] = useState(false);
     const [isNavbarVisible, setIsNavbarVisible] = useState(false);
+    const location = useLocation()
 
     const handleBurgerClick = () => {
         setIsNavbarVisible(!isNavbarVisible);
@@ -44,8 +46,13 @@ function Header() {
                     <Link onClick={() => setIsNavbarVisible(false)} to={"/register"}> SIGN UP </Link>
                 </div>
             </Container>
-            <Gear size={0.5} settingsIsVisible={settingsIsVisible} setSettingsIsVisible={setSettingsIsVisible}></Gear>
-            <SettingsItems className={settingsIsVisible? "isVisible" : ""}></SettingsItems> 
+            { location.pathname === "/myaccount" && 
+            <div>
+                <Gear size={0.5} settingsIsVisible={settingsIsVisible} setSettingsIsVisible={setSettingsIsVisible}></Gear>
+                <SettingsItems className={settingsIsVisible? "isVisible" : ""}></SettingsItems> 
+            </div> 
+            }
+            
         </>
     )
 }
