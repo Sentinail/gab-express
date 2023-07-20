@@ -1,29 +1,28 @@
-import React, {useEffect, useContext} from 'react'
+import React, { useEffect, useContext } from 'react'
 import { Outlet } from 'react-router-dom'
 import GlobalStyle from './GlobalStyle'
 import Header from './Components/Header/Header';
 import axios from 'axios';
 import { authContext } from './ContextProviders/AuthProvider';
 
-function App() {
-  const { setIsAuth, setUserInfomation } = useContext(authContext)
+function App() {  
+  const { setUserInfomation, setIsAuth } = useContext(authContext)
+
+  const getUser = async () => {
+    const user = await axios.get("http://localhost:9000/users/auth-session", {withCredentials: true})
+    return user.data
+  }
 
   useEffect(() => {
-    if (localStorage.getItem("email") && localStorage.getItem("password")) {
-      const email = localStorage.getItem("email")
-      const password = localStorage.getItem("password")
-
-      axios.post("http://localhost:5000/authentication", {
-        emailAddress: email,
-        password: password
-      }).then(res => {
-        res.data.authenticated ? setIsAuth(res.data.authenticated) : setIsAuth(res.data.authenticated)
-        setUserInfomation(res.data.userData)
-      }).catch(err => {
-        setIsAuth(false);
-        console.log(err)
-      })
-    }
+    getUser().then(res => {
+      if (res.login) {
+          setIsAuth(res.login)
+          setUserInfomation(res.user_data)
+      } else {
+          setIsAuth(false)
+      }
+  })
+  .catch(err => {alert(err)})
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 

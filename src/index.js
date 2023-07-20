@@ -4,7 +4,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import App from './App';
 import Home from './Components/Home/Home';
 import Login from './Components/Login/Login';
-import MyAccount from './Components/My_Account/MyAccount';
+import MyAccount from './Components/User_Account/MyAccount';
 import OrderForm from './Components/Order_Form/OrderForm';
 import Register from './Components/Register/Register';
 import TopDonors from './Components/Top_Donors/TopDonors';
@@ -14,7 +14,8 @@ import { useLocation } from 'react-router-dom';
 import StylesProvider from './ContextProviders/StylesProvider';
 import GlobalStyleForTest from './GlobalStylesTest';
 import AuthProvider from './ContextProviders/AuthProvider';
-import RegisterFormTest from './Components/Test_Components/RegisterFormTest';
+import RegisterFormTest from './Components/Register/RegisterForm';
+import UserAccount from './Components/User_Account/UserAccount';
 
 const ScrollToTop = () => {
   const location = useLocation();
@@ -39,6 +40,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Route path="/orderform" element={<OrderForm />} />
           <Route path="/topdonors" element={<TopDonors />} />
           <Route path="/about" element={<About />} />
+          <Route path='/user/:search' element={<UserAccount></UserAccount>}></Route>
         </Route>
         <Route path="/test" element={<StylesProvider><GlobalStyleForTest /><RegisterFormTest></RegisterFormTest></StylesProvider>} />
       </Routes>

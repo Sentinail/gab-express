@@ -3,15 +3,15 @@ import { SettingsItemContainer } from './SettingsItemsStyles'
 import { stylesContext } from '../../../ContextProviders/StylesProvider'
 import { authContext } from '../../../ContextProviders/AuthProvider'
 
+import axios from 'axios'
+
 function SettingsItems(props) {
     const { className } = props
     const styles = useContext(stylesContext)
-    const { isAuth, setIsAuth, setUserInfomation } = useContext(authContext)
+    const { isAuth, setIsAuth } = useContext(authContext)
 
-    const logout = () => {
-        localStorage.removeItem("email")
-        localStorage.removeItem("password")
-        setUserInfomation("")
+    const logout = async () => {
+        await axios.get("http://localhost:9000/users/logout", {withCredentials: true})
         setIsAuth(false)
     }
 
