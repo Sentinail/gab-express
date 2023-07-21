@@ -2,12 +2,21 @@ import React, { useContext, useEffect } from 'react'
 import { authContext } from '../../ContextProviders/AuthProvider'
 import { stylesContext } from '../../ContextProviders/StylesProvider'
 import { useNavigate } from 'react-router-dom'
-import { AccountContainer } from './AccountStyles'
+import { AccountContainer, LogoutButton } from './MyAccountStyles'
+import axios from 'axios'
+
 
 function MyAccount() {
   const styles = useContext(stylesContext)
-  const { userInformation, isAuth} = useContext(authContext)
+  const { userInformation, isAuth, setIsAuth} = useContext(authContext)
   const navigate = useNavigate()
+
+  const logout = async () => {
+      await axios.get("http://localhost:9000/users/logout", {withCredentials: true})
+      setIsAuth(false)
+
+      navigate("/home")
+  }
 
   useEffect(() => {
     isAuth ? navigate("/myaccount") : navigate("/home")
@@ -19,13 +28,22 @@ function MyAccount() {
         { !isAuth ? <h1> Please Login First </h1> : 
         <div className='userContainer'>
           <div className='left'>
-            <img src={require("../../Assets/Images/Di_ko_na_alam_pinaggagagawa_ko2.png")} alt="" />
-            <div className="member-since info-container">
-              <p className='user-info'> {userInformation.member_since} </p>
+            <div className="left-container">
+              <img src={require("../../Assets/Images/Di_ko_na_alam_pinaggagagawa_ko2.png")} alt="" />
+              <div className="member-since info-container">
+                <p className='user-info'> {userInformation.member_since} </p>
+              </div>
+              <div className="total-donation info-container">
+                <p className='user-info'> {userInformation.total_donation}$ </p>
+              </div>
             </div>
-            <div className="total-donation info-container">
-              <p className='user-info'> {userInformation.total_donation}$ </p>
-            </div>
+            {
+            isAuth && 
+            <LogoutButton backgroundColor={styles.secondaryColor} onClick={() => {logout()}}>
+              <p className="logout"> Logout </p>
+            </LogoutButton>
+            }
+            
           </div>
           <div className='middle'>
             <div className="container">

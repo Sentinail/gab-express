@@ -143,7 +143,7 @@ const RegisterForm = () => {
                 user_name: userName,
                 email_address: email,
                 password: password,
-            }).then(res => {
+            }, {headers: {"ngrok-skip-browser-warning": true}}).then(res => {
                 alert(res.data.message)
                 res.data.created ? navigate("/login") : navigate("/register")
             }).catch(err => {

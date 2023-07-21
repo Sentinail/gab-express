@@ -19,6 +19,10 @@ const GlobalStyle = createGlobalStyle`
         overflow-x: hidden;
     }
 
+    input, textarea, label {
+        font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+    }
+
 
 
     ::-webkit-scrollbar {

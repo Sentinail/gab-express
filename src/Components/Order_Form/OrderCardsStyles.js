@@ -29,6 +29,7 @@ export const OrderCardContainer = styled.div`
         text-align: center;
         background-color: #FFFFFF;
         font-size: 2rem;
+        font-family: 'Bebas Neue', sans-serif, "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
     }
 
     & input {
@@ -36,6 +37,7 @@ export const OrderCardContainer = styled.div`
         min-height: 30px;
         font-size: 2rem;
         text-align: center;
+        font-family: 'Bebas Neue', sans-serif, "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
     }
 
     & button {
@@ -46,7 +48,7 @@ export const OrderCardContainer = styled.div`
         border: none;
         border-radius: 50px;
         color: #FFFFFF;
-        padding: 10px;
+        padding: 10px 30px;
 
         &:hover {
             cursor: pointer;

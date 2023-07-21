@@ -134,7 +134,9 @@ const LoginForm = () => {
             axios.post(API.gabExpressApi + "/users/login", {
             email_address: email,
             password: password
-        }, {crossDomain: true, withCredentials: true,}).then(res => {
+        }, {headers: {
+            'ngrok-skip-browser-warning': true
+        }, crossDomain: true, withCredentials: true,}).then(res => {
             alert(res.data.message)
 
             if (res.data.login) {

@@ -24,7 +24,12 @@ function TopDonors() {
   const [data, setData] = useState()
 
   const getUsers = async () => {
-    const users = await axios.get(API.gabExpressApi + "/users")
+    const users = await axios.get(API.gabExpressApi + "/users", {
+      headers: {
+        'ngrok-skip-browser-warning': true
+      }
+    })
+    
     return users.data
   }
 

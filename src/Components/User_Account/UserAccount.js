@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
-import { AccountContainer } from './AccountStyles'
+import { AccountContainer } from './UserAccountStyles'
 import { stylesContext } from '../../ContextProviders/StylesProvider'
 import { apiEndpointContext } from '../../ContextProviders/APIEndpointsProvider'
 

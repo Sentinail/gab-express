@@ -44,7 +44,14 @@ export const AccountContainer = styled.div`
       }
     }
 
-    & .left {
+    & .left-container {
+      flex-direction: column;
+      display: flex;
+      align-items: center;
+      width: 100%;
+      height: auto;
+      gap: 20px;
+
       & img {
         display: block;
         width: 80%;
@@ -63,6 +70,10 @@ export const AccountContainer = styled.div`
         justify-content: center;
         align-items: center;
       }
+    }
+
+    & .left {
+      justify-content: space-between
     }
 
     & .middle {
@@ -116,5 +127,22 @@ export const AccountContainer = styled.div`
     @media screen and (max-width: 992px) {
       flex-direction: column;
     }
+  }
+`
+
+export const LogoutButton = styled.div`
+  width: 100%;
+  max-width: 400px;
+  height: 50px;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: ${props => {return `rgb(${props.backgroundColor[0]}, ${props.backgroundColor[1]}, ${props.backgroundColor[2]}, ${props.backgroundColor[3]})`}};
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.1)
   }
 `
