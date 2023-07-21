@@ -5,6 +5,7 @@ import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import { authContext } from '../../ContextProviders/AuthProvider'
 import { stylesContext } from '../../ContextProviders/StylesProvider'
+import { apiEndpointContext } from '../../ContextProviders/APIEndpointsProvider'
 
 
 const LoginContainer = styled.div`
@@ -118,6 +119,7 @@ const Button = styled.button`
 
 const LoginForm = () => {
     const styles = useContext(stylesContext)
+    const API = useContext(apiEndpointContext)
     const { setIsAuth, setUserInfomation } = useContext(authContext)
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -129,10 +131,10 @@ const LoginForm = () => {
             alert("Invalid Login")
             return
         } else {
-            axios.post("http://localhost:9000/users/login", {
+            axios.post(API.gabExpressApi + "/users/login", {
             email_address: email,
             password: password
-        }, { withCredentials: true }).then(res => {
+        }, {crossDomain: true, withCredentials: true,}).then(res => {
             alert(res.data.message)
 
             if (res.data.login) {

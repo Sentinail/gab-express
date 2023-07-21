@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { stylesContext } from '../../ContextProviders/StylesProvider'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+import { apiEndpointContext } from '../../ContextProviders/APIEndpointsProvider'
 
 const RegisterFormStyle = styled.div`
     min-height: 500px;
@@ -129,13 +130,14 @@ const RegisterForm = () => {
     const navigate = useNavigate()
 
     const styles = useContext(stylesContext)
+    const API = useContext(apiEndpointContext)
 
     let buttonIsActive = (firstNameIsValid && lastNameIsValid && userNameIsValid && emailIsValid && passwordIsValid && confirmPasswordIsValid)
 
     const register = (event) => {
         event.preventDefault()
         if (buttonIsActive) {
-            axios.post("http://localhost:9000/users", {
+            axios.post(API.gabExpressApi + "/users", {
                 first_name: firstName,
                 last_name: lastName,
                 user_name: userName,

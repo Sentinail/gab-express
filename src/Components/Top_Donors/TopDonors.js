@@ -3,6 +3,7 @@ import { TopDonorsContainer, TopDonorCellStyle } from './TopDonorsStyles'
 import { stylesContext } from '../../ContextProviders/StylesProvider'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+import { apiEndpointContext } from '../../ContextProviders/APIEndpointsProvider'
 
 export const TopDonorCell = (props) => {
   const {name, totalDonation, rankNum, backgroundColor, user_id} = props
@@ -19,11 +20,11 @@ export const TopDonorCell = (props) => {
 
 function TopDonors() {
   const styles = useContext(stylesContext)
+  const API = useContext(apiEndpointContext)
   const [data, setData] = useState()
 
-
   const getUsers = async () => {
-    const users = await axios.get("http://localhost:9000/users")
+    const users = await axios.get(API.gabExpressApi + "/users")
     return users.data
   }
 
@@ -31,6 +32,7 @@ function TopDonors() {
     getUsers()
       .then(res => setData(res))
       .catch(error => console.log(error));
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (

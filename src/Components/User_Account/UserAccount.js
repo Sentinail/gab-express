@@ -3,14 +3,16 @@ import { useParams } from 'react-router-dom'
 import axios from 'axios'
 import { AccountContainer } from './AccountStyles'
 import { stylesContext } from '../../ContextProviders/StylesProvider'
+import { apiEndpointContext } from '../../ContextProviders/APIEndpointsProvider'
 
 function UserAccount() {
     const styles = useContext(stylesContext)
     const [data, setData] = useState([])
     const { search } = useParams()
+    const API = useContext(apiEndpointContext)
 
     const getUser = async () => {
-        const user = await axios.get(`http://localhost:9000/users/${search}`)
+        const user = await axios.get(`${API.gabExpressApi}/users/${search}`)
         return user.data
     }
 

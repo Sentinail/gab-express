@@ -16,6 +16,7 @@ import GlobalStyleForTest from './GlobalStylesTest';
 import AuthProvider from './ContextProviders/AuthProvider';
 import RegisterFormTest from './Components/Register/RegisterForm';
 import UserAccount from './Components/User_Account/UserAccount';
+import APIEndpointsProvider from './ContextProviders/APIEndpointsProvider';
 
 const ScrollToTop = () => {
   const location = useLocation();
@@ -31,7 +32,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <BrowserRouter>
       <ScrollToTop />
       <Routes>
-        <Route path="/" element={<StylesProvider><AuthProvider><App /></AuthProvider></StylesProvider>}>
+        <Route path="/" element={<APIEndpointsProvider><StylesProvider><AuthProvider><App /></AuthProvider></StylesProvider></APIEndpointsProvider>}>
           <Route path="/" element={<Navigate to="/home" />} />
           <Route path="/home" element={<Home />} />
           <Route path="/login" element={<Login />} />
