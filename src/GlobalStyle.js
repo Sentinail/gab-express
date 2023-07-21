@@ -1,16 +1,17 @@
 import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
-    @font-face {
+    /* @font-face {
             font-family: Agharti;
             src: url("./Assets/Fonts/Agharti-BlackSemiCondensed.ttf");
-    }
+    } */
 
     * {
         padding: 0px;
         margin: 0px;
         box-sizing: border-box;
-        font-family: Agharti;
+        /* font-family: Agharti; */
+        font-family: 'Bebas Neue', sans-serif;
         transition: background-color 0.8s ease-in-out;
     }
 
