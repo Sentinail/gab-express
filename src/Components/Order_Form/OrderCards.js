@@ -9,15 +9,15 @@ function OrderCards(props) {
     const { id, img, price, placeToDonate } = props
     const styles = useContext(stylesContext)
     const { isAuth } = useContext(authContext)
-    const [quantity, setQuantity] = useState(0);
+    const [quantity, setQuantity] = useState('');
     const ref = useRef()
     const navigate = useNavigate()
     console.log()
 
     const changeQuantity = (value) => {
-        // Prevent non-numeric characters and negative values
         const numericValue = value.replace(/[^0-9]/g, '');
-        setQuantity(numericValue)
+        const nonZeroValue = numericValue.replace(/^0+/, '');
+        setQuantity(nonZeroValue)
     }
 
     const makePayment = (id, quantity) => {
@@ -58,7 +58,6 @@ function OrderCards(props) {
                 value={quantity}
                 onChange={(e) => { changeQuantity(e.target.value) }}
                 onKeyDown={(e) => {
-                    // Prevent "e", "-", and "+" characters
                     if (e.key === 'e' || e.key === '-' || e.key === '+') {
                         e.preventDefault();
                     }
