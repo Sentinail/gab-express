@@ -1,6 +1,6 @@
 import React, {useState, createContext} from 'react'
 
-export const apiEndpointContext= createContext()
+export const apiEndpointContext = createContext()
 
 function APIEndpointsProvider(props) {
     const { children } = props

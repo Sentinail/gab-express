@@ -2,7 +2,6 @@ import styled from 'styled-components'
 
 export const AccountContainer = styled.div`
   width: 100%;
-  height: 100px;
   min-height: calc(100vh - 80px);
   display: flex;
   justify-content: center;

@@ -25,7 +25,7 @@ function UserAccount() {
         <AccountContainer backgroundColor={styles.primaryColor} secondaryColor={styles.supportingColor}>
             <div className='userContainer'>
             <div className='left'>
-                <img src={require("../../Assets/Images/Di_ko_na_alam_pinaggagagawa_ko2.png")} alt="" />
+                <img src={`${API.gabExpressApi}/user-images/${data.user_profile_name}`} alt="" />
                 <div className="member-since info-container">
                 <p className='user-info'> {data.member_since} </p>
                 </div>

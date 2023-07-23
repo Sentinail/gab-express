@@ -2,13 +2,20 @@ import styled from 'styled-components'
 
 export const AccountContainer = styled.div`
   width: 100%;
-  height: 100px;
   min-height: calc(100vh - 80px);
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 50px;
   background-color: ${props => {return `rgb(${props.secondaryColor[0]}, ${props.secondaryColor[1]}, ${props.secondaryColor[2]}, ${props.secondaryColor[3]})`}};
+
+  & .user-wrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 100px;
+  }
 
   & * {
     color: #FFFFFF;
@@ -131,6 +138,23 @@ export const AccountContainer = styled.div`
 `
 
 export const LogoutButton = styled.div`
+  width: 100%;
+  max-width: 400px;
+  height: 50px;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: ${props => {return `rgb(${props.backgroundColor[0]}, ${props.backgroundColor[1]}, ${props.backgroundColor[2]}, ${props.backgroundColor[3]})`}};
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.1)
+  }
+`
+
+export const UpdateButton = styled.div`
   width: 100%;
   max-width: 400px;
   height: 50px;

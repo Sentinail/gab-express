@@ -14,9 +14,10 @@ import { useLocation } from 'react-router-dom';
 import StylesProvider from './ContextProviders/StylesProvider';
 import GlobalStyleForTest from './GlobalStylesTest';
 import AuthProvider from './ContextProviders/AuthProvider';
-import RegisterFormTest from './Components/Register/RegisterForm';
 import UserAccount from './Components/User_Account/UserAccount';
 import APIEndpointsProvider from './ContextProviders/APIEndpointsProvider';
+import CallServer from './Components/Test_Components/CallServer';
+import EditUserAccount from './Components/User_Account/EditUserAccount';
 
 const ScrollToTop = () => {
   const location = useLocation();
@@ -37,13 +38,15 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Route path="/home" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/myaccount" element={<MyAccount />} />
+          <Route path="/myaccount" element={<MyAccount />}>
+            <Route path='/myaccount/edit' element={<EditUserAccount></EditUserAccount>}/>
+          </Route>
           <Route path="/orderform" element={<OrderForm />} />
           <Route path="/topdonors" element={<TopDonors />} />
           <Route path="/about" element={<About />} />
           <Route path='/user/:search' element={<UserAccount></UserAccount>}></Route>
         </Route>
-        <Route path="/test" element={<StylesProvider><GlobalStyleForTest /><RegisterFormTest></RegisterFormTest></StylesProvider>} />
+        <Route path="/test" element={<APIEndpointsProvider><StylesProvider><GlobalStyleForTest /><CallServer></CallServer></StylesProvider></APIEndpointsProvider>} />
       </Routes>
     </BrowserRouter>
 );
