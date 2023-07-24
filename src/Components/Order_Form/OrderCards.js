@@ -4,9 +4,11 @@ import { stylesContext } from '../../ContextProviders/StylesProvider'
 import { authContext } from '../../ContextProviders/AuthProvider'
 import axios from "axios"
 import { useNavigate } from 'react-router-dom'
+import { apiEndpointContext } from '../../ContextProviders/APIEndpointsProvider'
 
 function OrderCards(props) {
     const { id, img, price, placeToDonate } = props
+    const API = useContext(apiEndpointContext)
     const styles = useContext(stylesContext)
     const { isAuth } = useContext(authContext)
     const [quantity, setQuantity] = useState('');
@@ -24,7 +26,7 @@ function OrderCards(props) {
         console.log(placeToDonate)
         if (isAuth && placeToDonate) {
             if (quantity > 0) {
-                axios.post("http://localhost:5000/create-checkout-session", {
+                axios.post(API.gabExpressApi + "/create-checkout-session", {
                     item: {
                         id: id,
                         quantity: quantity
