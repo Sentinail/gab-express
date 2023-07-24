@@ -31,7 +31,7 @@ function OrderCards(props) {
                         id: id,
                         quantity: quantity
                     }
-                }).then(res => {
+                }, {withCredentials: true, headers: {'ngrok-skip-browser-warning': true}}).then(res => {
                     window.location.href = res.data.url
                 }).catch(err => {
                     console.log(id, `${price}$`)
