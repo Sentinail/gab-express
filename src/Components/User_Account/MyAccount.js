@@ -15,7 +15,7 @@ function MyAccount() {
   const navigate = useNavigate()
 
   const handleLogout = async () => {
-      await axios.get(API.gabExpressApi + "/users/logout", {withCredentials: true})
+      await axios.get(API.gabExpressApi + "/users/logout", {withCredentials: true, headers: {'ngrok-skip-browser-warning': true}})
       setIsAuth(false)
 
       navigate("/home")

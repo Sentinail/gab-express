@@ -9,7 +9,7 @@ function App() {
   const { setUserInfomation, setIsAuth } = useContext(authContext)
 
   const getUser = async () => {
-    const user = await axios.get("http://localhost:9000/users/auth-session", {withCredentials: true})
+    const user = await axios.get("http://localhost:9000/users/auth-session", {withCredentials: true, headers: {'ngrok-skip-browser-warning': true}})
     return user.data
   }
 

@@ -12,7 +12,7 @@ function UserAccount() {
     const API = useContext(apiEndpointContext)
 
     const getUser = async () => {
-        const user = await axios.get(`${API.gabExpressApi}/users/${search}`)
+        const user = await axios.get(`${API.gabExpressApi}/users/${search}`, {withCredentials: true, headers: {'ngrok-skip-browser-warning': true}})
         return user.data
     }
 
