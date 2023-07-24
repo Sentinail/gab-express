@@ -136,7 +136,7 @@ const LoginForm = () => {
             password: password
         }, {headers: {
             'ngrok-skip-browser-warning': true
-        }, crossDomain: true, withCredentials: true,}).then(res => {
+        }, withCredentials: true,}).then(res => {
             alert(res.data.message)
 
             if (res.data.login) {

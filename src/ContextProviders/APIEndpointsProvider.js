@@ -4,7 +4,7 @@ export const apiEndpointContext = createContext()
 
 function APIEndpointsProvider(props) {
     const { children } = props
-    const [gabExpressApi, setGabExpressApi] = useState("https://5eee-136-158-41-25.ngrok-free.app")
+    const [gabExpressApi, setGabExpressApi] = useState("http://localhost:9001")
 
     return (
         <apiEndpointContext.Provider value={{gabExpressApi, setGabExpressApi}}>{children}</apiEndpointContext.Provider>
