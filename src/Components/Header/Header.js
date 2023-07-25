@@ -30,7 +30,7 @@ function Header() {
                     <Link to={"/topdonors"}> TOP DONORS </Link>
                     <Link to={"/about"}> ABOUT </Link>
                     <Link to={"/home"}> HOME </Link>
-                    <Link to={"/register"}> SIGN UP </Link>
+                    { !isAuth && <Link onClick={() => setIsNavbarVisible(false)} to={"/register"}> SIGN UP </Link>}
                 </NavBar>
                 <DonateLoginContainer>
                     <DonateButton backgroundColor={secondaryColor} onClick={() => {goTo("/orderform")}} > DONATE </DonateButton>
@@ -43,7 +43,7 @@ function Header() {
                     <Link onClick={() => setIsNavbarVisible(false)} to={"/topdonors"}> TOP DONORS </Link>
                     <Link onClick={() => setIsNavbarVisible(false)} to={"/about"}> ABOUT </Link>
                     <Link onClick={() => setIsNavbarVisible(false)} to={"/home"}> HOME </Link>
-                    <Link onClick={() => setIsNavbarVisible(false)} to={"/register"}> SIGN UP </Link>
+                    { !isAuth && <Link onClick={() => setIsNavbarVisible(false)} to={"/register"}> SIGN UP </Link>}
                 </div>
             </Container>
             { location.pathname === "/myaccount" && 

@@ -11,13 +11,8 @@ function App() {
   const API = useContext(apiEndpointContext)
 
   const getUser = async () => {
-    try {
-      const user = await axios.get(API.gabExpressApi + "/users/auth-session", {withCredentials: true, headers: {'ngrok-skip-browser-warning': true}})
-      return user.data
-    } catch (err) {
-      console.log(err)
-    }
-    
+    const user = await axios.get(API.gabExpressApi + "/users/auth-session", {withCredentials: true, headers: {'ngrok-skip-browser-warning': true}})
+    return user.data
   }
 
   useEffect(() => {

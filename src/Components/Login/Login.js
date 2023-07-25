@@ -100,6 +100,7 @@ const LoginFormStyle = styled.div`
             color: #4B8DC1;
         }
     }
+    
 `
 
 const Button = styled.button`
@@ -116,6 +117,10 @@ const Button = styled.button`
         scale: 1.1;
     }
 `
+const MessagePTag = styled.p`
+    color: ${props => {return `rgb(${props.textColor[0]}, ${props.textColor[1]}, ${props.textColor[2]}, ${props.textColor[3]})`}};
+    margin-top: 20px;
+`
 
 const LoginForm = () => {
     const styles = useContext(stylesContext)
@@ -123,31 +128,44 @@ const LoginForm = () => {
     const { setIsAuth, setUserInfomation } = useContext(authContext)
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [message, setMessage] = useState('')
+
     const navigate = useNavigate()
 
     const authenticateUser = (event) => {
         event.preventDefault();
-        if (email.length <= 0 || password.length <= 0) {
-            alert("Invalid Login")
-            return
-        } else {
-            axios.post(API.gabExpressApi + "/users/login", {
-            email_address: email,
-            password: password
-        }, {headers: {
-            'ngrok-skip-browser-warning': true
-        }, withCredentials: true,}).then(res => {
-            alert(res.data.message)
 
-            if (res.data.login) {
-                setIsAuth(res.data.login)
-                setUserInfomation(res.data.user_data)
-            } else {
-                setIsAuth(false)
-            }
-            res.data.login ? navigate("/home") : navigate("/login")
-        })
-        .catch(err => {alert(err)})
+        if (email.length <= 0 || password.length <= 0) {
+            setMessage("Invalid Login")
+            return
+
+        } else {
+            axios.post(
+                API.gabExpressApi + "/users/login", 
+                {
+                    email_address: email,
+                    password: password
+                },    
+                {
+                    headers: {
+                        'ngrok-skip-browser-warning': true
+                    }, 
+                    withCredentials: true,
+                }
+            )
+            .then(res => {
+                setMessage(res.data.message)
+
+                if (res.data.login) {
+                    setIsAuth(res.data.login)
+                    setUserInfomation(res.data.user_data)
+                } else {
+                    setIsAuth(false)
+                }
+                res.data.login ? navigate("/home") : navigate("/login")
+            })
+            
+            .catch(err => {console.log(err)})
         }
     }
 
@@ -158,9 +176,10 @@ const LoginForm = () => {
                 
                     <h1> LOGIN </h1>
                     <div className='form'>
-                        <input onChange={event => {setEmail(event.target.value)}} autoComplete='on' id='email' type="email" placeholder='Email' required/>
-                        <input onChange={event => {setPassword(event.target.value)}} autoComplete='on' id='password' type="password" placeholder='Enter Password' required/>
+                        <input onFocus={() => {setMessage("")}} onChange={event => {setEmail(event.target.value)}} autoComplete='on' id='email' type="email" placeholder='Email' required/>
+                        <input onFocus={() => {setMessage("")}} onChange={event => {setPassword(event.target.value)}} autoComplete='on' id='password' type="password" placeholder='Enter Password' required/>
                     </div>
+                    <MessagePTag textColor={styles.secondaryColor}> {message} </MessagePTag>
                     <div className="login-container">
                         <Button backgroundColor={styles.secondaryColor} onClick={event => {authenticateUser(event)}}> LOGIN </Button>
                         <p> Not yet registered? </p>

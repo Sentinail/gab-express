@@ -42,7 +42,7 @@ export const Container = styled.div`
         top: 99%;
         left: 0px;
         width: 100%;
-        height: ${props => {return props.isNavbarVisible ? 300 : 0}}px;
+        max-height: ${props => {return props.isNavbarVisible ? 500 : 0}}px;
         gap: 20px;
         background-color: ${props => {return `rgb(${props.backgroundColor[0]}, ${props.backgroundColor[1]}, ${props.backgroundColor[2]}, ${props.backgroundColor[3]})`}};
         display: flex;
@@ -152,7 +152,7 @@ export const DonateLoginContainer = styled.div`
     align-items: center;
     gap: 30px;
 
-    @media screen and (max-width: 400px) {
+    @media screen and (max-width: 430px) {
         gap: 0;
     }
 `

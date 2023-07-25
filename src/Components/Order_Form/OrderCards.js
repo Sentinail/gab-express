@@ -51,7 +51,7 @@ function OrderCards(props) {
 
     return (
         <OrderCardContainer key={id} backgroundColor={styles.primaryColor} secondaryColor={styles.secondaryColor}>
-            <img src={img} alt={id}></img>
+            <img src={`${API.gabExpressApi}/food-item-images/${img.item_name}_${id}${img.extension_name}`} alt={id}></img>
             <label className='price'> {price}$ </label>
             <input
                 ref={ref}
