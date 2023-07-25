@@ -167,6 +167,12 @@ const EmailBody = styled.textarea`
   text-align: center;
 `
 
+const EmailMessageH3Tag = styled.h3`
+  color: ${props => {return `rgb(${props.textColor[0]}, ${props.textColor[1]}, ${props.textColor[2]}, ${props.textColor[3]})`}};
+  text-align: center;
+  letter-spacing: 1px;
+`
+
 const SubmitButton = styled.button`
   margin-left: 10px;
   margin-top: 5px;
@@ -190,6 +196,7 @@ function Footer() {
   const [showScrollButton, setShowScrollButton] = useState(false);
   const [email, setEmail] = useState("");
   const [comment, setComment] = useState("");
+  const [emailMessage, setEmailMessage] = useState("");
 
 
   const handleEmailChange = (e) => {
@@ -200,11 +207,13 @@ function Footer() {
     setComment(e.target.value); 
   };
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e) => {
+    e.preventDefault()
     const isValidEmail = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(email)
+    console.log(isValidEmail)
     
     if (isValidEmail) {
-      await axios.post("https://api.emailjs.com/api/v1.0/email/send", {
+      const result = await axios.post("https://api.emailjs.com/api/v1.0/email/send", {
         service_id: "service_zefjqyg",
         template_id: "template_6psunhw",
         user_id: "SmrA8ku0lE5dwsCBc",
@@ -214,9 +223,11 @@ function Footer() {
           reply_to: email,
         }
       })
-      alert("Email Has Been Sent!")
+      if (result.data === "OK") {
+        setEmailMessage("Email Sent!")
+      }
     } else {
-      alert("Invalid Email Address")
+      setEmailMessage("Invalid Email Address")
     }
   }
 
@@ -274,14 +285,14 @@ function Footer() {
               <SendUsAnEmail>
                 <h4>Any concerns? Email us</h4>
                 <form className="email-input" action="">
-                  <EmailInput
+                  <EmailInput onFocus={() => setEmailMessage("")}
                     type="email"
                     placeholder="Enter your email"
                     value={email}
                     onChange={handleEmailChange}
                     required={true}
                   />
-                  <EmailBody 
+                  <EmailBody onFocus={() => setEmailMessage("")}
                     placeholder="Enter your comment"
                     rows="4"
                     cols="50"
@@ -291,7 +302,10 @@ function Footer() {
                   >
                   </EmailBody>
 
-                  <SubmitButton onClick={handleSubmit} backgroundColor={secondaryColor}>Submit</SubmitButton>
+                  <EmailMessageH3Tag textColor={secondaryColor}> {emailMessage} </EmailMessageH3Tag>
+
+                  <SubmitButton onClick={(e) => {handleSubmit(e)}} backgroundColor={secondaryColor}>Submit</SubmitButton>
+                  
                 </form>
               </SendUsAnEmail>
             </Column>

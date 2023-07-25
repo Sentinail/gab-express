@@ -34,8 +34,6 @@ function OrderForm() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  console.log(itemDatas)
-
   return (
     <OrderFormContainer img={require("../../Assets/Images/grocery_1.png")}>
       <div className="donate-top">

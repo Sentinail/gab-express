@@ -112,6 +112,7 @@ export const IntroductionContainer = styled.div`
     padding: 50px;
     position: relative;
     animation: fadeIn 0.5s ease-in-out;
+    z-index: 1;
 
     @keyframes fadeIn {
         from { opacity: 0; transform: translateY(-50px);}
