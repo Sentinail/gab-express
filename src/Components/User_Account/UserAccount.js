@@ -9,12 +9,20 @@ function UserAccount() {
     const styles = useContext(stylesContext)
     const [recentActivities, setRecentActivities] = useState()
     const [data, setData] = useState([])
+    const [imageData, setImageData] = useState()
     const { search } = useParams()
     const API = useContext(apiEndpointContext)
 
     const getDatas = async () => {
         const user = await axios.get(`${API.gabExpressApi}/users/${search}`, {withCredentials: true, headers: {'ngrok-skip-browser-warning': true}})
         const user_transactions = await axios.post(`${API.gabExpressApi}/transactions`, {email_address: user.data.email_address}, {headers: {'ngrok-skip-browser-warning': true}})
+        const response = await axios.post(`${API.gabExpressApi}/images/user-images`, {
+            email_address: user.data.email_address
+          } ,{
+            responseType: 'blob',
+            headers: {'ngrok-skip-browser-warning': true}
+          });
+          setImageData(URL.createObjectURL(response.data));
         return {user_transactions: user_transactions.data.result,  user: user.data}
     }
 
@@ -33,7 +41,7 @@ function UserAccount() {
         <AccountContainer backgroundColor={styles.primaryColor} secondaryColor={styles.supportingColor}>
             <div className='userContainer'>
             <div className='left'>
-                <img src={`${API.gabExpressApi}/user-images/${data.user_profile_name}`} alt="" />
+                <img src={imageData} alt="user-profile" />
                 <div className="member-since info-container">
                 <p className='user-info'> {data.member_since} </p>
                 </div>

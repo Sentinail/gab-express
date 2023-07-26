@@ -1,6 +1,5 @@
 import React, { useState, useContext } from 'react'
 import { EditUserAccountContainer, ProfilePictureContainer, ProfileAboutMeContainer, SubmitChangesButton, GoBackToMyAccountButton } from './EditUserAccountStyle'
-import { authContext } from '../../ContextProviders/AuthProvider'
 import { stylesContext } from '../../ContextProviders/StylesProvider'
 import { apiEndpointContext } from '../../ContextProviders/APIEndpointsProvider'
 import { useNavigate } from 'react-router-dom'
@@ -11,8 +10,7 @@ import axios from 'axios'
 function EditUserAccount() {
     const API = useContext(apiEndpointContext)
     const styles = useContext(stylesContext)
-    const { userInformation } = useContext(authContext)
-    const [imageURL, setImageURL] = useState(`${API.gabExpressApi}/user-images/${userInformation.user_profile_name}`)
+    const [imageURL, setImageURL] = useState()
     const [file, setFile] = useState('')
     const [aboutMe, setAboutMe] = useState('')
     const navigate = useNavigate()
@@ -29,7 +27,7 @@ function EditUserAccount() {
         const formData = new FormData();
         formData.append("image", file)
         formData.append("about_user", aboutMe)
-        await axios.patch(API.gabExpressApi + "/users", formData, {withCredentials: true, headers: {'ngrok-skip-browser-warning': true}})
+        await axios.post(API.gabExpressApi + `/users/patch-user/`, formData, {withCredentials: true, headers: {'ngrok-skip-browser-warning': true}})
         navigate("/myaccount")
         window.location.reload()
     }
@@ -43,7 +41,7 @@ function EditUserAccount() {
             <EditUserAccountContainer borderColor={styles.secondaryColor}>
                 <ProfilePictureContainer backgroundColor={styles.secondaryColor} borderColor={styles.secondaryColor}>
                     <h1> Change Profile </h1>
-                    <img src={imageURL} alt='profile'></img>
+                    {imageURL && <img src={imageURL} alt='profile'></img>}
                     <label id="image-input-label" htmlFor="image-input"> Choose A Photo </label>
                     <input name='image-input' id='image-input' type="file" accept='image/*' onChange={(e) => {handleFileChange(e)}}/>
                 </ProfilePictureContainer>

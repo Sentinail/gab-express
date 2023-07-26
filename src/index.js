@@ -16,8 +16,8 @@ import GlobalStyleForTest from './GlobalStylesTest';
 import AuthProvider from './ContextProviders/AuthProvider';
 import UserAccount from './Components/User_Account/UserAccount';
 import APIEndpointsProvider from './ContextProviders/APIEndpointsProvider';
-import CallServer from './Components/Test_Components/CallServer';
 import EditUserAccount from './Components/User_Account/EditUserAccount';
+import ImageComponent from './Components/Test_Components/GetImage';
 
 const ScrollToTop = () => {
   const location = useLocation();
@@ -46,7 +46,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Route path="/about" element={<About />} />
           <Route path='/user/:search' element={<UserAccount></UserAccount>}></Route>
         </Route>
-        <Route path="/test" element={<APIEndpointsProvider><StylesProvider><GlobalStyleForTest /><CallServer></CallServer></StylesProvider></APIEndpointsProvider>} />
+        <Route path="/test" element={<APIEndpointsProvider><StylesProvider><GlobalStyleForTest /><ImageComponent></ImageComponent></StylesProvider></APIEndpointsProvider>} />
       </Routes>
     </BrowserRouter>
 );

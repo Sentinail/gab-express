@@ -13,6 +13,7 @@ function MyAccount() {
   const API = useContext(apiEndpointContext)
   const { userInformation, isAuth, setIsAuth} = useContext(authContext)
   const [recentActivities, setRecentActivities] = useState()
+  const [imageData, setImageData] = useState()
   const navigate = useNavigate()
 
   const handleLogout = async () => {
@@ -29,6 +30,13 @@ function MyAccount() {
   const getDatas = async () => {
     try {
       const user_transactions = await axios.post(`${API.gabExpressApi}/transactions`, {email_address: userInformation.email_address}, {withCredentials: true, headers: {'ngrok-skip-browser-warning': true}})
+      const response = await axios.post(`${API.gabExpressApi}/images/user-images`, {
+        email_address: userInformation.email_address
+      } ,{
+        responseType: 'blob',
+        headers: {'ngrok-skip-browser-warning': true}
+      });
+      setImageData(URL.createObjectURL(response.data));
       return {user_transactions: user_transactions.data.result}
     } catch (err) {
     }
@@ -56,7 +64,7 @@ function MyAccount() {
             <div className='userContainer'>
               <div className='left'>
                 <div className="left-container">
-                  <img src={`${API.gabExpressApi}/user-images/${userInformation.user_profile_name}`} alt="user-profile" />
+                  <img src={imageData} alt="user-profile" />
                   <div className="member-since info-container">
                     <p className='user-info'> {userInformation.member_since} </p>
                   </div>

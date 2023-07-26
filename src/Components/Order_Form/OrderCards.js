@@ -1,4 +1,4 @@
-import React, { useContext, useState, useRef } from 'react'
+import React, { useContext, useState, useRef, useEffect } from 'react'
 import { OrderCardContainer, MessagePTag } from './OrderCardsStyles'
 import { stylesContext } from '../../ContextProviders/StylesProvider'
 import { authContext } from '../../ContextProviders/AuthProvider'
@@ -12,12 +12,31 @@ function OrderCards(props) {
     const { isAuth } = useContext(authContext)
     const [quantity, setQuantity] = useState('');
     const [message, setMessage] = useState("")
+    const [imageData, setImageData] = useState()
     const ref = useRef()
     const changeQuantity = (value) => {
         const numericValue = value.replace(/[^0-9]/g, '');
         const nonZeroValue = numericValue.replace(/^0+/, '');
         setQuantity(nonZeroValue)
     }
+
+    const getImageData = async () => {
+        const result = await axios.post(API.gabExpressApi + "/images/food-item-images", {
+            item_id: id,
+            item_name: img.item_name,
+        }, {responseType: "blob" ,headers: {'ngrok-skip-browser-warning': true}})
+
+        return result.data
+    }
+
+    useEffect(() => {
+        const getImage = async () => {
+            const result = await getImageData()
+            setImageData(URL.createObjectURL(result))
+        }
+        getImage()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    },[])
 
     const makePayment = (id, quantity) => {
         if (!isAuth) {
@@ -49,7 +68,7 @@ function OrderCards(props) {
 
     return (
         <OrderCardContainer key={id} backgroundColor={styles.primaryColor} secondaryColor={styles.secondaryColor}>
-            <img src={`${API.gabExpressApi}/food-item-images/${img.item_name}_${id}${img.extension_name}`} alt={id}></img>
+            <img src={imageData} alt={id}></img>
             <label className='price'> {price}$ </label>
             <input
                 onFocus={ ()=> {setMessage("")}}
