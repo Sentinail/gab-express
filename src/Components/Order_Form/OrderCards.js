@@ -33,7 +33,8 @@ function OrderCards(props) {
                 axios.post(API.gabExpressApi + "/create-checkout-session", {
                     item: {
                         id: id,
-                        quantity: quantity
+                        quantity: quantity,
+                        place_to_deliver: placeToDonate
                     }
                 }, {withCredentials: true, headers: {'ngrok-skip-browser-warning': true}}).then(res => {
                     window.location.href = res.data.url

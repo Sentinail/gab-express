@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import { authContext } from '../../ContextProviders/AuthProvider'
 import { stylesContext } from '../../ContextProviders/StylesProvider'
 import { useNavigate } from 'react-router-dom'
@@ -12,6 +12,7 @@ function MyAccount() {
   const styles = useContext(stylesContext)
   const API = useContext(apiEndpointContext)
   const { userInformation, isAuth, setIsAuth} = useContext(authContext)
+  const [recentActivities, setRecentActivities] = useState()
   const navigate = useNavigate()
 
   const handleLogout = async () => {
@@ -24,6 +25,28 @@ function MyAccount() {
   const handleUpdate = () => {
     navigate("edit")
   }
+
+  const getDatas = async () => {
+    try {
+      const user_transactions = await axios.post(`${API.gabExpressApi}/transactions`, {email_address: userInformation.email_address}, {withCredentials: true, headers: {'ngrok-skip-browser-warning': true}})
+      return {user_transactions: user_transactions.data.result}
+    } catch (err) {
+    }
+  }
+
+  useEffect(() => {
+    const getUserTransactions = async () => {
+      const transaction = await getDatas()
+      if (transaction) {
+        const user_transactions = transaction.user_transactions
+        setRecentActivities(user_transactions)
+      }
+    }
+
+    getUserTransactions()
+    
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [userInformation])
 
     return (
       <>
@@ -76,8 +99,11 @@ function MyAccount() {
                 <div className="container ">
                   <p>RECENT ACTIVITIES</p>
                   <div className="recent-activity info-container">
-                    <p className='user-info'> Lorem ipsum dolor sit amet </p>
-                  </div>
+                    {recentActivities && recentActivities.map((transaction_data) => {
+                       return <p key={transaction_data.id} className='user-info'> {`${userInformation.user_name} donated ${transaction_data.item_name} with a total of ${transaction_data.quantity * transaction_data.price}$ to 
+                       ${transaction_data.donation_place} on ${transaction_data.createdAt} [${transaction_data.status}]`} </p>
+                    })}
+                  </div> 
                 </div>
               </div>
               <div className='right'>

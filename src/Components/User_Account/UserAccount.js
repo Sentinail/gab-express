@@ -7,17 +7,25 @@ import { apiEndpointContext } from '../../ContextProviders/APIEndpointsProvider'
 
 function UserAccount() {
     const styles = useContext(stylesContext)
+    const [recentActivities, setRecentActivities] = useState()
     const [data, setData] = useState([])
     const { search } = useParams()
     const API = useContext(apiEndpointContext)
 
-    const getUser = async () => {
+    const getDatas = async () => {
         const user = await axios.get(`${API.gabExpressApi}/users/${search}`, {withCredentials: true, headers: {'ngrok-skip-browser-warning': true}})
-        return user.data
+        const user_transactions = await axios.post(`${API.gabExpressApi}/transactions`, {email_address: user.data.email_address}, {headers: {'ngrok-skip-browser-warning': true}})
+        return {user_transactions: user_transactions.data.result,  user: user.data}
     }
 
     useEffect(() => {
-        getUser().then(res => {setData(res)})
+        const fetchData = async () => {
+            const { user, user_transactions } = await getDatas()
+            setRecentActivities(user_transactions)
+            setData(user)
+        };
+
+        fetchData()
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
     
@@ -55,7 +63,10 @@ function UserAccount() {
                 <div className="container">
                 <p>RECENT ACTIVITIES</p>
                 <div className="recent-activity info-container">
-                    <p className='user-info'> Lorem ipsum dolor sit amet </p>
+                    {recentActivities && recentActivities.map((transaction_data) => {
+                       return <p key={transaction_data.id} className='user-info'> {`${data.user_name} donated ${transaction_data.item_name} with a total of  ${transaction_data.quantity * transaction_data.price}$ to 
+                       ${transaction_data.donation_place} on ${transaction_data.createdAt} [${transaction_data.status}]`} </p>
+                    })}
                 </div>
                 </div>
             </div>

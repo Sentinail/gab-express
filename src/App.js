@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from 'react'
+import React, { useContext, useLayoutEffect } from 'react'
 import { Outlet } from 'react-router-dom'
 import GlobalStyle from './GlobalStyle'
 import Header from './Components/Header/Header';
@@ -17,7 +17,7 @@ function App() {
     return user.data
   }
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     getUser().then(res => {
       if (res.login) {
           setIsAuth(res.login)
