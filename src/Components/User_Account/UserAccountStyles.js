@@ -32,7 +32,6 @@ export const AccountContainer = styled.div`
       display: flex;
       align-items: center;
       width: 100%;
-      height: 100%;
       gap: 20px;
 
       animation: fadeIn 0.5s ease-in-out;
@@ -83,6 +82,18 @@ export const AccountContainer = styled.div`
 
         & p {
           color: #2F2E2E
+        }
+
+        & .recent-activity {
+          border-radius: 0px;
+          display: flex;
+          flex-direction: column;
+          justify-content: start;
+          height: 300px;
+          gap: 20px;
+          padding: 20px;
+          max-height: 300px;
+          overflow-y: scroll; 
         }
 
         & div {

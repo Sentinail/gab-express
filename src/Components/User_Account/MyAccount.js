@@ -73,7 +73,7 @@ function MyAccount() {
                     <p className='user-info'> {userInformation.email_address} </p>
                   </div>
                 </div>
-                <div className="container">
+                <div className="container ">
                   <p>RECENT ACTIVITIES</p>
                   <div className="recent-activity info-container">
                     <p className='user-info'> Lorem ipsum dolor sit amet </p>

@@ -1,9 +1,8 @@
 import React, { useContext, useState, useRef } from 'react'
-import { OrderCardContainer } from './OrderCardsStyles'
+import { OrderCardContainer, MessagePTag } from './OrderCardsStyles'
 import { stylesContext } from '../../ContextProviders/StylesProvider'
 import { authContext } from '../../ContextProviders/AuthProvider'
 import axios from "axios"
-import { useNavigate } from 'react-router-dom'
 import { apiEndpointContext } from '../../ContextProviders/APIEndpointsProvider'
 
 function OrderCards(props) {
@@ -12,10 +11,8 @@ function OrderCards(props) {
     const styles = useContext(stylesContext)
     const { isAuth } = useContext(authContext)
     const [quantity, setQuantity] = useState('');
+    const [message, setMessage] = useState("")
     const ref = useRef()
-    const navigate = useNavigate()
-    console.log()
-
     const changeQuantity = (value) => {
         const numericValue = value.replace(/[^0-9]/g, '');
         const nonZeroValue = numericValue.replace(/^0+/, '');
@@ -23,8 +20,15 @@ function OrderCards(props) {
     }
 
     const makePayment = (id, quantity) => {
-        console.log(placeToDonate)
-        if (isAuth && placeToDonate) {
+        if (!isAuth) {
+            setMessage("Please Login First")
+        } 
+        
+        else if (!placeToDonate) {
+            setMessage("Please Input The Place")
+        }
+
+        else if (isAuth && placeToDonate) {
             if (quantity > 0) {
                 axios.post(API.gabExpressApi + "/create-checkout-session", {
                     item: {
@@ -34,19 +38,12 @@ function OrderCards(props) {
                 }, {withCredentials: true, headers: {'ngrok-skip-browser-warning': true}}).then(res => {
                     window.location.href = res.data.url
                 }).catch(err => {
-                    console.log(id, `${price}$`)
-                    alert(err)
+                    console.log(err)
                 })
             } else {
-                alert("Invalid Quantity")
+                setMessage("Invalid Quantity")
             }
-        } else if (!isAuth) {
-            alert("Please Login First")
-            navigate("/login")
-        } else if (!placeToDonate) {
-            alert("Please Input The Place")
         }
-
     }
 
     return (
@@ -54,6 +51,7 @@ function OrderCards(props) {
             <img src={`${API.gabExpressApi}/food-item-images/${img.item_name}_${id}${img.extension_name}`} alt={id}></img>
             <label className='price'> {price}$ </label>
             <input
+                onFocus={ ()=> {setMessage("")}}
                 ref={ref}
                 type='text'
                 placeholder='QUANTITY'
@@ -65,6 +63,7 @@ function OrderCards(props) {
                     }
                 }}
             ></input>
+            <MessagePTag textColor={styles.secondaryColor}> {message} </MessagePTag>
             <button onClick={() => { makePayment(id, quantity) }}> MAKE PAYMENT </button>
         </OrderCardContainer>
     )

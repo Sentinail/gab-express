@@ -56,3 +56,8 @@ export const OrderCardContainer = styled.div`
         }
     }
 `
+
+export const MessagePTag = styled.p`
+    color: ${props => {return `rgb(${props.textColor[0]}, ${props.textColor[1]}, ${props.textColor[2]}, ${props.textColor[3]})`}};
+    text-align: center;
+`

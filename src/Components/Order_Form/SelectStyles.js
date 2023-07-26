@@ -41,25 +41,6 @@ export const SelectContainer = styled.div`
 `
 
 export const Options = styled.div`
-    ::-webkit-scrollbar {
-    width: 8px; 
-    }
-
-    
-    ::-webkit-scrollbar-track {
-    background: #f1f1f1; 
-    }
-
-    
-    ::-webkit-scrollbar-thumb {
-    background: #888; 
-    border-radius: 4px; 
-    }
-
-    
-    ::-webkit-scrollbar-thumb:hover {
-    background: #555; 
-    }
 
     width: 100%;
     height: ${props => {return props.isVisible ? 500 : 0}}px;

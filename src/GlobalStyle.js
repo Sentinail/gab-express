@@ -23,20 +23,18 @@ const GlobalStyle = createGlobalStyle`
         font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
     }
 
-
-
     ::-webkit-scrollbar {
     width: 8px; 
     }
 
     
     ::-webkit-scrollbar-track {
-    background: #f1f1f1; 
+    background: ${props => {return `rgb(${props.backgroundColor[0]}, ${props.backgroundColor[1]}, ${props.backgroundColor[2]}, ${props.backgroundColor[3]})`}};
     }
 
     
     ::-webkit-scrollbar-thumb {
-    background: #888; 
+    background: ${props => {return `rgb(${props.secondaryColor[0]}, ${props.secondaryColor[1]}, ${props.secondaryColor[2]}, ${props.secondaryColor[3]})`}};; 
     border-radius: 4px; 
     }
 

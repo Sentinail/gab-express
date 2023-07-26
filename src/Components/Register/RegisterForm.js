@@ -92,6 +92,12 @@ const RegisterFormStyle = styled.div`
     }
 `
 
+const MessagePTag = styled.p`
+    color: ${props => {return `rgb(${props.textColor[0]}, ${props.textColor[1]}, ${props.textColor[2]}, ${props.textColor[3]})`}};
+    text-align: center;
+    margin-top: 20px;
+`
+
 const Button = styled.button`
     min-width: 100px;
 
@@ -127,6 +133,8 @@ const RegisterForm = () => {
     const [passwordIsValid, setPasswordIsValid] = useState(false);
     const [confirmPasswordIsValid, setConfirmPasswordIsValid] = useState(false);
 
+    const [message, setMessage] = useState("")
+
     const navigate = useNavigate()
 
     const styles = useContext(stylesContext)
@@ -144,7 +152,7 @@ const RegisterForm = () => {
                 email_address: email,
                 password: password,
             }, {headers: {"ngrok-skip-browser-warning": true}}).then(res => {
-                alert(res.data.message)
+                setMessage(res.data.message)
                 res.data.created ? navigate("/login") : navigate("/register")
             }).catch(err => {
                 alert(err)
@@ -230,7 +238,11 @@ const RegisterForm = () => {
                         <p hidden={confirmPasswordIsValid || confirmPassword.length <= 0}> Confirm password doesn't match </p>
                         <p hidden={(passwordIsValid || confirmPassword.length > 0 || password.length > 0) || confirmPassword.length <= 0}> Confirm password requires 8 characters </p>
                     </div>
+                    
+                    
+
                 </div>  
+                <MessagePTag textColor={styles.secondaryColor}> {message} </MessagePTag>
                 <div className="login-container">
                     <Button isActive={!buttonIsActive}  onClick={(event) => {register(event)}} backgroundColor={styles.secondaryColor} 
                     disabled={!buttonIsActive}> 

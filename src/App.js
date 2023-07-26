@@ -5,9 +5,11 @@ import Header from './Components/Header/Header';
 import axios from 'axios';
 import { authContext } from './ContextProviders/AuthProvider';
 import { apiEndpointContext } from './ContextProviders/APIEndpointsProvider';
+import { stylesContext } from './ContextProviders/StylesProvider';
 
 function App() {  
   const { setUserInfomation, setIsAuth } = useContext(authContext)
+  const { primaryColor, secondaryColor } = useContext(stylesContext)
   const API = useContext(apiEndpointContext)
 
   const getUser = async () => {
@@ -30,7 +32,7 @@ function App() {
 
   return (
     <>
-      <GlobalStyle></GlobalStyle>
+      <GlobalStyle backgroundColor={primaryColor} secondaryColor={secondaryColor}></GlobalStyle>
       <Header></Header>
       <main>
         <Outlet></Outlet>
