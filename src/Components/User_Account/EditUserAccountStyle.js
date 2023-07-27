@@ -4,7 +4,7 @@ export const EditUserAccountContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 50px;
+    padding: 50px 5vw;
     border: 2px solid ${props => {return `rgb(${props.borderColor[0]}, ${props.borderColor[1]}, ${props.borderColor[2]}, ${props.borderColor[3]})`}};
     gap: 100px;
 
@@ -21,13 +21,14 @@ export const ProfilePictureContainer = styled.div`
     flex-direction: column;
     align-items: center;
     gap: 20px;
-    padding: 50px;
+    padding: 50px 5vw;
     border-top: 2px solid ${props => {return `rgb(${props.borderColor[0]}, ${props.borderColor[1]}, ${props.borderColor[2]}, ${props.borderColor[3]})`}};
     border-bottom: 2px solid ${props => {return `rgb(${props.borderColor[0]}, ${props.borderColor[1]}, ${props.borderColor[2]}, ${props.borderColor[3]})`}};
     width: 100%;
 
     & h1 {
         color: #000000;
+        text-align: center
     }
 
     & img {
@@ -63,20 +64,21 @@ export const ProfileAboutMeContainer = styled.div`
     flex-direction: column;
     align-items: center;    
     gap: 20px;
-    padding: 50px;
+    padding: 50px 5vw;
     border-top: 2px solid ${props => {return `rgb(${props.borderColor[0]}, ${props.borderColor[1]}, ${props.borderColor[2]}, ${props.borderColor[3]})`}};
     border-bottom: 2px solid ${props => {return `rgb(${props.borderColor[0]}, ${props.borderColor[1]}, ${props.borderColor[2]}, ${props.borderColor[3]})`}};
     width: 100%;
 
     & h1, textarea {
         color: #000000;
-        outline: none;
+        outline: none;  
+        text-align: center
     }
 
     & textarea {
         text-align: center;
-        min-width: 300px;
-        min-height: 300px;
+        width: 100%;
+        height: 300px
     }
 
 `

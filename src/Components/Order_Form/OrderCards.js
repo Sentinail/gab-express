@@ -4,6 +4,7 @@ import { stylesContext } from '../../ContextProviders/StylesProvider'
 import { authContext } from '../../ContextProviders/AuthProvider'
 import axios from "axios"
 import { apiEndpointContext } from '../../ContextProviders/APIEndpointsProvider'
+import LoadingComponent from '../Loading/LoadingComponent'
 
 function OrderCards(props) {
     const { id, img, price, placeToDonate } = props
@@ -68,7 +69,7 @@ function OrderCards(props) {
 
     return (
         <OrderCardContainer key={id} backgroundColor={styles.primaryColor} secondaryColor={styles.secondaryColor}>
-            <img src={imageData} alt={id}></img>
+            {imageData ? <img src={imageData} alt={id}></img> : <LoadingComponent></LoadingComponent>}
             <label className='price'> {price}$ </label>
             <input
                 onFocus={ ()=> {setMessage("")}}

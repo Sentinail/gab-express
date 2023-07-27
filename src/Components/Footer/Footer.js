@@ -225,6 +225,8 @@ function Footer() {
       })
       if (result.data === "OK") {
         setEmailMessage("Email Sent!")
+        setEmail("")
+        setComment("")
       }
     } else {
       setEmailMessage("Invalid Email Address")

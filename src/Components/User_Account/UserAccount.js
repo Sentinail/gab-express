@@ -4,11 +4,12 @@ import axios from 'axios'
 import { AccountContainer } from './UserAccountStyles'
 import { stylesContext } from '../../ContextProviders/StylesProvider'
 import { apiEndpointContext } from '../../ContextProviders/APIEndpointsProvider'
+import LoadingComponent from '../Loading/LoadingComponent'
 
 function UserAccount() {
     const styles = useContext(stylesContext)
     const [recentActivities, setRecentActivities] = useState()
-    const [data, setData] = useState([])
+    const [data, setData] = useState()
     const [imageData, setImageData] = useState()
     const { search } = useParams()
     const API = useContext(apiEndpointContext)
@@ -39,6 +40,7 @@ function UserAccount() {
     
     return (
         <AccountContainer backgroundColor={styles.primaryColor} secondaryColor={styles.supportingColor}>
+            {data || imageData ? 
             <div className='userContainer'>
             <div className='left'>
                 <img src={imageData} alt="user-profile" />
@@ -86,7 +88,8 @@ function UserAccount() {
                 </p>
                 </div>
             </div>
-            </div>
+            </div>    
+            : <LoadingComponent></LoadingComponent>}
         </AccountContainer>
     )
 }

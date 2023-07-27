@@ -4,6 +4,7 @@ import { stylesContext } from '../../ContextProviders/StylesProvider'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import { apiEndpointContext } from '../../ContextProviders/APIEndpointsProvider'
+import LoadingComponent from '../Loading/LoadingComponent'
 
 export const TopDonorCell = (props) => {
   const {name, totalDonation, rankNum, backgroundColor, user_id} = props
@@ -51,7 +52,7 @@ function TopDonors() {
           totalDonation={user.total_donation} 
           rankNum={index + 1} 
           backgroundColor={(index + 1) % 2 === 0 ? styles.primaryColor : styles.secondaryColor}
-          user_id={user.user_id}></TopDonorCell>}) : "False"}
+          user_id={user.user_id}></TopDonorCell>}) : <LoadingComponent></LoadingComponent>}
         </div>
       </div>
     </TopDonorsContainer>
