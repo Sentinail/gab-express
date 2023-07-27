@@ -17,11 +17,29 @@ function MyAccount() {
   const [imageData, setImageData] = useState()
   const navigate = useNavigate()
 
-  const handleLogout = async () => {
-      await axios.get(API.gabExpressApi + "/users/logout", {withCredentials: true, headers: {'ngrok-skip-browser-warning': true}})
-      setIsAuth(false)
+  const getUserColorPreference = async () => {
+    try {
+        const result = await axios.get(API.gabExpressApi + "/users/preference", {withCredentials: true, headers: {'ngrok-skip-browser-warning': true}})
+        return result.data
+    } catch (err) {
+        console.log(err)
+    }
+}
 
-      navigate("/home")
+
+  const handleLogout = async () => {
+    await axios.get(API.gabExpressApi + "/users/logout", {withCredentials: true, headers: {'ngrok-skip-browser-warning': true}})
+    setIsAuth(false)
+
+    navigate("/home")
+    const userColorPreference = async () => {
+      const result = await getUserColorPreference()
+      styles.setPrimaryColor(result.primary_color) 
+      styles.setSecondaryColor(result.secondary_color)
+      styles.setSupportingColor(result.supporting_color)
+    }
+
+    userColorPreference()
   }
 
   const handleUpdate = () => {

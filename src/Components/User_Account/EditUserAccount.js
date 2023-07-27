@@ -1,5 +1,5 @@
-import React, { useState, useContext } from 'react'
-import { EditUserAccountContainer, ProfilePictureContainer, ProfileAboutMeContainer, SubmitChangesButton, GoBackToMyAccountButton } from './EditUserAccountStyle'
+import React, { useState, useContext, useEffect } from 'react'
+import { EditUserAccountContainer, ProfilePictureContainer, ProfileAboutMeContainer, SubmitChangesButton, GoBackToMyAccountButton, ErrorMessagePTag } from './EditUserAccountStyle'
 import { stylesContext } from '../../ContextProviders/StylesProvider'
 import { apiEndpointContext } from '../../ContextProviders/APIEndpointsProvider'
 import { useNavigate } from 'react-router-dom'
@@ -11,25 +11,44 @@ function EditUserAccount() {
     const API = useContext(apiEndpointContext)
     const styles = useContext(stylesContext)
     const [imageURL, setImageURL] = useState()
-    const [file, setFile] = useState('')
-    const [aboutMe, setAboutMe] = useState('')
+    const [file, setFile] = useState()
+    const [aboutMe, setAboutMe] = useState()
+    const [errorMessage, setErrorMessage] = useState()
     const navigate = useNavigate()
 
     const handleFileChange = (e) => {
         setFile(e.target.files[0])
-        setImageURL(URL.createObjectURL(e.target.files[0]))
+        setErrorMessage()
     }
+
     const handleAboutMeChange = (e) => {
         setAboutMe(e.target.value)
+        setErrorMessage()
     }
+
+    useEffect(() => {
+        if (file) {
+            setImageURL(URL.createObjectURL(file))
+        }
+    }, [file])
     
     const handleSubmitButton = async () => {
-        const formData = new FormData();
-        formData.append("image", file)
-        formData.append("about_user", aboutMe)
-        await axios.post(API.gabExpressApi + `/users/patch-user/`, formData, {withCredentials: true, headers: {'ngrok-skip-browser-warning': true}})
-        navigate("/myaccount")
-        window.location.reload()
+        if (file) {
+            if (aboutMe) {
+                const formData = new FormData();
+                formData.append("image", file)
+                formData.append("about_user", aboutMe)
+                await axios.post(API.gabExpressApi + `/users/patch-user/`, formData, {withCredentials: true, headers: {'ngrok-skip-browser-warning': true}})
+                navigate("/myaccount")
+                navigate(0)
+            } 
+            else {
+                setErrorMessage("Please Tell About Yourself")
+            }
+        }
+        else {
+            setErrorMessage("Please Input Image")
+        }
     }
 
     const handleGoBackButton = () => {
@@ -49,9 +68,10 @@ function EditUserAccount() {
                     <h1> Change About Me </h1>
                     <textarea name="about-me" id="" cols="30" rows="10" onChange={(e) => {handleAboutMeChange(e)}}></textarea>
                 </ProfileAboutMeContainer>
+                <ErrorMessagePTag textColor={styles.secondaryColor}> {errorMessage} </ErrorMessagePTag>
                 <SubmitChangesButton backgroundColor={styles.secondaryColor} onClick={() => {handleSubmitButton()}}>
                     Submit Changes
-                </SubmitChangesButton>
+                </SubmitChangesButton>  
                 <GoBackToMyAccountButton backgroundColor={styles.secondaryColor} onClick={() => {handleGoBackButton()}}> 
                     Home
                 </GoBackToMyAccountButton>

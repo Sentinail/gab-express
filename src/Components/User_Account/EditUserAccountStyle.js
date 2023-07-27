@@ -112,3 +112,8 @@ export const GoBackToMyAccountButton = styled.button`
         scale: 1.1;
     }
 `   
+
+export const ErrorMessagePTag = styled.p`
+    color: ${props => {return `rgb(${props.textColor[0]}, ${props.textColor[1]}, ${props.textColor[2]}, ${props.textColor[3]})`}};
+    font-size: 2rem;
+`

@@ -132,6 +132,15 @@ const LoginForm = () => {
 
     const navigate = useNavigate()
 
+    const getUserColorPreference = async () => {
+        try {
+            const result = await axios.get(API.gabExpressApi + "/users/preference", {withCredentials: true, headers: {'ngrok-skip-browser-warning': true}})
+            return result.data
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
     const authenticateUser = (event) => {
         event.preventDefault();
 
@@ -163,6 +172,15 @@ const LoginForm = () => {
                     setIsAuth(false)
                 }
                 res.data.login ? navigate("/home") : navigate("/login")
+                
+                const userColorPreference = async () => {
+                    const result = await getUserColorPreference()
+                    styles.setPrimaryColor(result.primary_color) 
+                    styles.setSecondaryColor(result.secondary_color)
+                    styles.setSupportingColor(result.supporting_color)
+                }
+        
+                userColorPreference()
             })
             
             .catch(err => {console.log(err)})
