@@ -40,6 +40,9 @@ function OrderCards(props) {
     },[])
 
     const makePayment = (id, quantity) => {
+        const isHuge = quantity * price >= 1000000
+
+
         if (!isAuth) {
             setMessage("Please Login First")
         } 
@@ -48,7 +51,12 @@ function OrderCards(props) {
             setMessage("Please Input The Place")
         }
 
-        else if (isAuth && placeToDonate) {
+        else if (isHuge) {
+            setMessage("Donation Won't Exceed 1,000,000$")
+        }
+
+        else if (isAuth && placeToDonate && !isHuge) {
+            
             if (quantity > 0) {
                 axios.post(API.gabExpressApi + "/create-checkout-session", {
                     item: {
